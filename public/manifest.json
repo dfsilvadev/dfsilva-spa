@@ -1,0 +1,38 @@
+{
+  "name": "Daniel Silva • Sênior Front-End Developer",
+  "short_name": "Sênior Front-End Developer",
+  "description": "Meu trabalho gira em torno da criação de experiências interativas únicas com tecnologia baseada em navegador. Atualmente desenvolvo em Reactjs / Nextjs.",
+  "icons": [
+    {
+      "src": "/android-chrome-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#151618",
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "theme_color": "#524BF2",
+  "lang": "pt-BR"
+}
