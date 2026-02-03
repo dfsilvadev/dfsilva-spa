@@ -1,7 +1,8 @@
-import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
-import { BrowserRouter } from 'react-router'
 import type { ReactElement } from 'react'
+import { BrowserRouter } from 'react-router'
+import { describe, expect, it } from 'vitest'
+
 import App from './App'
 
 function renderWithRouter(ui: ReactElement) {
