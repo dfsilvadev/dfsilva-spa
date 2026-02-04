@@ -1,0 +1,14 @@
+.slide-in-up__content {
+  width: fit-content;
+  object-fit: contain;
+  overflow: hidden;
+}
+
+.slide-in-up__wrapper {
+  width: fit-content;
+  object-fit: contain;
+
+  img {
+    margin-bottom: -0.6rem;
+  }
+}
