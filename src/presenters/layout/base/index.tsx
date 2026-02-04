@@ -1,10 +1,10 @@
 import { Outlet } from "react-router";
 
-import { Cursor, Navbar } from "../components/ui";
+import { Cursor, Navbar } from "@/presenters/components/ui";
 
-import "./AppLayout.scss";
+import "./styles.scss";
 
-export function AppLayout() {
+const Base = () => {
   return (
     <div className="app-layout">
       <Navbar />
@@ -14,4 +14,6 @@ export function AppLayout() {
       </main>
     </div>
   );
-}
+};
+
+export default Base;

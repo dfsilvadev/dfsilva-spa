@@ -12,3 +12,5 @@ export { default as SectionDivider } from "./section-divider";
 export { default as SectionHeading } from "./section-heading";
 export { default as SlideInUp, handleSlideIn } from "./slide-in-up";
 export { default as SocialMedia } from "./social-media";
+export { default as SplitBox } from "./split-box";
+export { default as SplitText } from "./split-text";
