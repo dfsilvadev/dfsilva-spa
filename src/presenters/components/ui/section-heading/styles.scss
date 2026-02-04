@@ -1,0 +1,35 @@
+@use "../../../../styles/theme/variables" as *;
+
+$section-heading-padding-mobile: 2.4rem 1.6rem;
+$section-heading-padding-desktop: 2.4rem 3.2rem;
+$section-heading-bar-width: 3.2rem;
+$section-heading-bar-height: 2px;
+$section-heading-bar-left-mobile: 1.6rem;
+$section-heading-bar-left-desktop: 3.2rem;
+
+.section-heading {
+  padding: $section-heading-padding-mobile;
+  position: relative;
+  text-transform: uppercase;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $section-heading-padding-desktop;
+  }
+
+  &--has-border {
+    &::after {
+      position: absolute;
+      background-color: $color-main-primary;
+      inset: 0;
+      width: $section-heading-bar-width;
+      height: $section-heading-bar-height;
+      left: $section-heading-bar-left-mobile;
+      content: "";
+      z-index: $layer-base;
+
+      @media (min-width: $breakpoint-md) {
+        left: $section-heading-bar-left-desktop;
+      }
+    }
+  }
+}
