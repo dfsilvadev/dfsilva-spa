@@ -1,0 +1,60 @@
+@use "../../../../styles/theme/variables" as *;
+
+$grid-max-width: 179.2rem;
+$grid-margin-mobile: 1.6rem;
+
+.grid {
+  max-width: $grid-max-width;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+    margin-left: $grid-margin-mobile;
+    margin-right: $grid-margin-mobile;
+  }
+
+  // Variante da cor da borda (e do divisor central)
+  &--border-black {
+    border-left: 1.5px solid $color-border-black;
+    border-right: 1.5px solid $color-border-black;
+
+    @media (min-width: $breakpoint-md) {
+      &::after {
+        background-color: $color-border-black;
+      }
+    }
+  }
+
+  &--border-light {
+    border-left: 1.5px solid $color-border-light;
+    border-right: 1.5px solid $color-border-light;
+
+    @media (min-width: $breakpoint-md) {
+      &::after {
+        background-color: $color-border-light;
+      }
+    }
+  }
+
+  // Linha vertical central (desktop)
+  &--has-divider {
+    @media (min-width: $breakpoint-md) {
+      &::after {
+        position: absolute;
+        inset: 0;
+        width: 1px;
+        content: "";
+        height: 100%;
+        margin: 0 auto;
+        z-index: $layer-base;
+      }
+    }
+  }
+}
