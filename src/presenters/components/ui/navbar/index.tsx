@@ -1,6 +1,6 @@
+import BurgerButton from "../burger-button";
 import Flex from "../flex";
 import Grid from "../grid";
-import BurgerButton from "../burger-button";
 import "./styles.scss";
 
 export default function Navbar() {

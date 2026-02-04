@@ -1,4 +1,5 @@
 export { default as Avatar } from "./avatar";
+export { default as BurgerButton } from "./burger-button";
 export { default as Cursor } from "./cursor";
 export { default as Flex, FlexComponent } from "./flex";
 export { default as Grid } from "./grid";
@@ -6,3 +7,5 @@ export { default as GridColumn } from "./grid-column";
 export { default as Heading } from "./heading";
 export { default as Logo } from "./logo";
 export { default as Magnetic } from "./magnetic";
+export { default as Navbar } from "./navbar";
+export { default as SectionDivider } from "./section-divider";

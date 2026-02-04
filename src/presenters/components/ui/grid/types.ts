@@ -6,6 +6,6 @@ export type GridProps = {
 };
 
 export type GridDependencies = {
-  children: ReactNode;
+  children?: ReactNode;
 } & GridProps &
   HTMLAttributes<HTMLDivElement>;
