@@ -1,0 +1,42 @@
+@use "../../../../styles/theme/variables" as *;
+
+.heading {
+  line-height: 100%;
+  transition: color $transition-default;
+
+  // cor do texto
+  &--color-white {
+    color: $color-white;
+  }
+  &--color-default {
+    color: $color-text-heading;
+  }
+  &--color-gray {
+    color: $color-gray-200;
+  }
+
+  // tamanho
+  &--size-small {
+    font-size: $font-size-heading-small;
+  }
+  &--size-regular {
+    font-size: $font-size-heading-regular;
+  }
+  &--size-large {
+    font-size: $font-size-heading-large;
+  }
+  &--size-huge {
+    font-size: $font-size-heading-huge;
+  }
+
+  // peso
+  &--weight-regular {
+    font-weight: $font-weight-regular;
+  }
+  &--weight-medium {
+    font-weight: $font-weight-medium;
+  }
+  &--weight-semibold {
+    font-weight: $font-weight-semibold;
+  }
+}
