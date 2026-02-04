@@ -1,5 +1,5 @@
-import { Outlet } from 'react-router'
-import Cursor from '../components/ui/cursor'
+import { Outlet } from "react-router";
+import Cursor from "../components/ui/cursor";
 
 export function AppLayout() {
   return (
@@ -9,5 +9,5 @@ export function AppLayout() {
         <Outlet />
       </main>
     </div>
-  )
+  );
 }

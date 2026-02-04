@@ -1,0 +1,13 @@
+export { default as CssIcon } from "./css_icon.svg?react";
+export { default as CypressIcon } from "./cypress_icon.svg?react";
+export { default as HtmlIcon } from "./html_icon.svg?react";
+export { default as JavascriptIcon } from "./javascript_icon.svg?react";
+export { default as NextIcon } from "./next_icon.svg?react";
+export { default as NodeIcon } from "./node_icon.svg?react";
+export { default as RadixIcon } from "./radix_icon.svg?react";
+export { default as ReactIcon } from "./react_icon.svg?react";
+export { default as SassIcon } from "./sass_icon.svg?react";
+export { default as StorybookIcon } from "./storybook_icon.svg?react";
+export { default as StyledIcon } from "./styled_icon.svg?react";
+export { default as TailwindIcon } from "./tailwind_icon.svg?react";
+export { default as TypescriptIcon } from "./ts_icon.svg?react";

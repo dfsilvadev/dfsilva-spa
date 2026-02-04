@@ -1,7 +1,7 @@
-import { Routes } from '@/presenters/routes/routes'
+import { Routes } from "@/presenters/routes/routes";
 
 function App() {
-  return <Routes />
+  return <Routes />;
 }
 
-export default App
+export default App;
