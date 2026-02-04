@@ -1,0 +1,44 @@
+@use "../../../../styles/theme/variables" as *;
+
+$logo-size-sm: 2.4rem;
+$logo-size-md: 3.6rem;
+$logo-size-lg: 5.2rem;
+
+.logo {
+  display: inline-flex;
+  flex-shrink: 0;
+
+  svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  // cor (currentColor no SVG herda deste)
+  &--color-primary {
+    color: $color-main-primary;
+  }
+  &--color-secondary {
+    color: $color-main-secondary;
+  }
+  &--color-light {
+    color: $color-gray-200;
+  }
+  &--color-dark {
+    color: $color-text-heading;
+  }
+
+  // tamanho
+  &--size-sm {
+    width: $logo-size-sm;
+    height: $logo-size-sm;
+  }
+  &--size-md {
+    width: $logo-size-md;
+    height: $logo-size-md;
+  }
+  &--size-lg {
+    width: $logo-size-lg;
+    height: $logo-size-lg;
+  }
+}

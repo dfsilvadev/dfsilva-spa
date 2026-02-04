@@ -1,6 +1,6 @@
 import { House } from "phosphor-react";
 
-import { Avatar, Heading } from "../components/ui";
+import { Avatar, Heading, Logo } from "../components/ui";
 
 import "./Home.scss";
 
@@ -8,6 +8,7 @@ export function Home() {
   return (
     <div className="home">
       <Avatar />
+      <Logo />
       <House
         size={48}
         weight="duotone"

@@ -4,3 +4,4 @@ export { default as Flex, FlexComponent } from "./flex";
 export { default as Grid } from "./grid";
 export { default as GridColumn } from "./grid-column";
 export { default as Heading } from "./heading";
+export { default as Logo } from "./logo";
