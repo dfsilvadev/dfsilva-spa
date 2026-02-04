@@ -11,3 +11,4 @@ export { default as Navbar } from "./navbar";
 export { default as SectionDivider } from "./section-divider";
 export { default as SectionHeading } from "./section-heading";
 export { default as SlideInUp, handleSlideIn } from "./slide-in-up";
+export { default as SocialMedia } from "./social-media";
