@@ -1,0 +1,41 @@
+@use "../../../../styles/theme/variables" as *;
+
+.text {
+  line-height: 140%;
+
+  &--color-white {
+    color: $color-white;
+  }
+  &--color-default {
+    color: $color-text-main;
+  }
+  &--color-gray {
+    color: $color-gray-200;
+  }
+
+  &--size-xsmall {
+    font-size: $font-size-main-xsmall;
+  }
+  &--size-small {
+    font-size: $font-size-main-small;
+  }
+  &--size-medium {
+    font-size: $font-size-main-medium;
+  }
+  &--size-large {
+    font-size: $font-size-main-large;
+  }
+  &--size-xlarge {
+    font-size: $font-size-main-xlarge;
+  }
+
+  &--weight-regular {
+    font-weight: $font-weight-regular;
+  }
+  &--weight-medium {
+    font-weight: $font-weight-medium;
+  }
+  &--weight-semibold {
+    font-weight: $font-weight-semibold;
+  }
+}

@@ -1,0 +1,21 @@
+@use "../../../../styles/theme/variables" as *;
+
+.typing-text {
+  overflow: hidden;
+
+  & > div > :is(h1, h2, h3, h4, h5, h6, p) {
+    font-size: 4rem;
+    text-transform: uppercase;
+    font-weight: $font-weight-bold;
+    white-space: nowrap;
+    display: inline-block;
+    border-right: 2px solid $color-text-heading;
+    animation: typing-blink 0.5s step-end infinite;
+  }
+}
+
+@keyframes typing-blink {
+  50% {
+    border-color: transparent;
+  }
+}
