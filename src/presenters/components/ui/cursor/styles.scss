@@ -1,0 +1,57 @@
+@use "../../../../styles/theme/variables" as *;
+
+$cursor-breakpoint: 992px;
+
+.cursor {
+  position: fixed;
+  pointer-events: none;
+  z-index: $layer-always-on-top;
+  background: transparent;
+  mix-blend-mode: difference;
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: $cursor-breakpoint) {
+    display: flex;
+  }
+}
+
+.cursor-view-all {
+  position: fixed;
+  top: -5rem;
+  left: -10rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: $color-main-primary;
+  color: $color-white;
+  font-size: $font-size-main-xsmall;
+  font-weight: $font-weight-bold;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scale: 0;
+  opacity: 0;
+}
+
+.cursor-polygon {
+  position: fixed;
+  top: -0.5rem;
+  left: -0.5rem;
+  height: 0.9rem;
+  width: 0.9rem;
+  pointer-events: none;
+  padding: 0.5rem;
+  border: 1px solid $color-white;
+  transform: rotate(-45deg);
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: $cursor-breakpoint) {
+    display: flex;
+  }
+}

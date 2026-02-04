@@ -1,13 +1,22 @@
-import { useTranslation } from 'react-i18next'
-import { House } from 'phosphor-react'
+import { House } from "phosphor-react";
+import { useTranslation } from "react-i18next";
+import { Avatar } from "../components/ui";
+import "./Home.scss";
 
 export function Home() {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
-    <div className="flex flex-col items-center gap-4 p-8">
-      <House size={48} weight="duotone" className="text-indigo-500" />
-      <h1 className="text-2xl font-bold">{t('welcome')}</h1>
-      <p className="text-gray-600 dark:text-gray-400">{t('home')}</p>
+    <div className="home">
+      <Avatar />
+      <House
+        size={48}
+        weight="duotone"
+        className="home__icon"
+        data-content="view-all"
+      />
+      <h1 className="home__title">{t("welcome")}</h1>
+      <p className="home__text">{t("home")}</p>
+      <a href="http://localhost:3001">Link</a>
     </div>
-  )
+  );
 }

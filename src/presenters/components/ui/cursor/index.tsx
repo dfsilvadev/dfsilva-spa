@@ -6,6 +6,7 @@ import {
   viewAllCursorAnimation,
   type CursorAnimationContext,
 } from "./anim";
+import "./styles.scss";
 
 const Cursor = () => {
   const cursorRef = useRef<HTMLDivElement>(null);
@@ -59,20 +60,11 @@ const Cursor = () => {
   });
 
   return (
-    <div
-      ref={cursorRef}
-      className="fixed pointer-events-none z-always-on-top bg-transparent mix-blend-difference hidden min-[992px]:flex min-[992px]:items-center min-[992px]:justify-center"
-    >
-      <div
-        ref={viewAllCursorRef}
-        className="fixed -top-10 -left-20 h-20 w-20 rounded-full bg-main-primary text-[0.625rem] text-white uppercase font-bold scale-0 opacity-0 hidden items-center justify-center"
-      >
+    <div ref={cursorRef} className="cursor">
+      <div ref={viewAllCursorRef} className="cursor-view-all">
         <span>saiba mais</span>
       </div>
-      <div
-        ref={polygonCursorRef}
-        className="fixed -top-1 -left-1.5 h-[0.7rem] w-[0.7rem] pointer-events-none p-1 border border-white -rotate-45 hidden min-[992px]:flex min-[992px]:items-center min-[992px]:justify-center"
-      />
+      <div ref={polygonCursorRef} className="cursor-polygon" />
     </div>
   );
 };

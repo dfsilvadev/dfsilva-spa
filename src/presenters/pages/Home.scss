@@ -1,0 +1,23 @@
+@use "../../styles/theme/variables" as *;
+
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+
+  .home__icon {
+    color: $color-main-primary;
+  }
+
+  .home__title {
+    font-size: $font-size-heading-small;
+    font-weight: $font-weight-semibold;
+    color: $color-text-heading;
+  }
+
+  .home__text {
+    color: $color-text-main;
+  }
+}
