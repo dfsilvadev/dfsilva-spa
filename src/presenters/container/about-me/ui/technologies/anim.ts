@@ -13,7 +13,7 @@ export type TechnologyCardContext = gsap.Context & {
 };
 
 export const handleOnHoverCard = (
-  gridBoxRef: RefObject<HTMLDivElement>
+  gridBoxRef: RefObject<HTMLDivElement | null>
 ): TechnologyCardContext => {
   return gsap.context((self) => {
     self.add("onEnter", (evt: MouseEvent<HTMLElement>) => {
