@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "phosphor-react";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import { useScroll } from "@/presenters/contexts/ScrollContext";
 import { SOCIAL_URLS } from "@/lib/constants/social";
@@ -12,13 +13,6 @@ interface MenuProps {
   onClose: () => void;
 }
 
-const menuItems = [
-  { label: "Home", href: "/", count: null },
-  { label: "Sobre", href: "#about", count: null },
-  { label: "Projetos", href: "#projects", count: null },
-  { label: "Contato", href: "#contact", count: null },
-];
-
 const socialLinks = [
   { label: "Instagram", href: SOCIAL_URLS.INSTAGRAM },
   { label: "LinkedIn", href: SOCIAL_URLS.LINKEDIN },
@@ -29,9 +23,18 @@ const socialLinks = [
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
 export default function Menu({ isOpen, onClose }: MenuProps) {
+  const { t, i18n } = useTranslation();
   const { scrollToSection } = useScroll();
 
-  const currentTime = new Date().toLocaleTimeString("pt-BR", {
+  const menuItems = [
+    { labelKey: "menu.home" as const, href: "/", count: null },
+    { labelKey: "menu.about" as const, href: "#about", count: null },
+    { labelKey: "menu.projects" as const, href: "#projects", count: null },
+    { labelKey: "menu.contact" as const, href: "#contact", count: null },
+  ];
+
+  const locale = i18n.language?.startsWith("en") ? "en" : "pt-BR";
+  const currentTime = new Date().toLocaleTimeString(locale, {
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
@@ -109,7 +112,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
               <div className="menu__header">
                 <div className="menu__header-info">
                   <span className="menu__header-place">
-                    Suzano, SP - Brasil
+                    {t("menu.location")}
                   </span>{" "}
                   {currentTime}
                 </div>
@@ -117,9 +120,9 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
                   type="button"
                   onClick={onClose}
                   className="menu__close"
-                  aria-label="Fechar menu"
+                  aria-label={t("menu.closeMenu")}
                 >
-                  Fechar
+                  {t("menu.close")}
                   <span className="menu__close-icon">
                     <X size={16} weight="bold" />
                   </span>
@@ -131,7 +134,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
                   <ul className="menu__list">
                     {menuItems.map((item, i) => (
                       <motion.li
-                        key={item.label}
+                        key={item.labelKey}
                         initial={{ opacity: 0, x: -10 }}
                         animate={{
                           opacity: 1,
@@ -150,7 +153,9 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
                           onClick={() => handleLinkClick(item.href)}
                           className="menu__link"
                         >
-                          <span className="menu__link-label">{item.label}</span>
+                          <span className="menu__link-label">
+                            {t(item.labelKey)}
+                          </span>
                           {item.count != null && (
                             <span className="menu__link-count">
                               {item.count}

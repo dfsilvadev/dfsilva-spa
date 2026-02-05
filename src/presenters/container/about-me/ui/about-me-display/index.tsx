@@ -1,12 +1,14 @@
+import { Trans, useTranslation } from "react-i18next";
+
 import { Flex, Magnetic, Text } from "../../../../components/ui";
 
 export default function AboutMeDisplay() {
+  const { t } = useTranslation();
+
   return (
     <Flex gap="1.6rem" direction="column">
       <Text>
-        Olá, meu nome é Daniel Silva e moro em Suzano - SP. Meu trabalho é criar
-        experiências interativas únicas usando tecnologia web, e hoje atuo
-        principalmente com{" "}
+        {t("about.intro1")}{" "}
         <Magnetic>
           <span>
             <strong>
@@ -34,15 +36,11 @@ export default function AboutMeDisplay() {
       </Text>
 
       <Text>
-        Minha paixão por desenvolver vai além do código; também adoro a etapa de{" "}
-        <em>UX Design</em> e gosto de participar de um projeto desde a{" "}
-        <em>idealização da arquitetura</em> até a <em>implementação</em> e os{" "}
-        <em>testes</em>.
+        <Trans i18nKey="about.intro2" components={{ em: <em /> }} />
       </Text>
 
       <Text>
-        <em>"Desenvolver tornou-se um hobby favorito"</em> e atualmente pratico
-        esse hobby no{" "}
+        <Trans i18nKey="about.intro3" components={{ em: <em /> }} />{" "}
         <Magnetic>
           <span>
             <strong>
@@ -53,10 +51,7 @@ export default function AboutMeDisplay() {
         .
       </Text>
 
-      <Text>
-        Obrigado por ler um pouco sobre mim. Fico feliz em conversar e trocar
-        experiências sobre desenvolvimento e tecnologia.
-      </Text>
+      <Text>{t("about.intro4")}</Text>
     </Flex>
   );
 }

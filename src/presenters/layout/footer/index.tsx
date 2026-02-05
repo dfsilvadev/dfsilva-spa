@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 import { SplitText, Status, Text } from "@/presenters/components/ui";
 
 import "./styles.scss";
@@ -5,11 +7,14 @@ import "./styles.scss";
 const START_YEAR = 2019;
 
 export default function Footer() {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
   const yearLabel =
     currentYear > START_YEAR
       ? `${START_YEAR} - ${currentYear}`
       : `${START_YEAR}`;
+
+  const name = t("footer.name");
 
   return (
     <footer className="app-footer">
@@ -32,12 +37,12 @@ export default function Footer() {
           <SplitText
             firstSplit={
               <Text size="small" textColor="gray" weight="semibold">
-                Daniel F. da Silva
+                {name}
               </Text>
             }
             lastSplit={
               <Text size="small" textColor="gray" weight="semibold">
-                Daniel F. da Silva
+                {name}
               </Text>
             }
           />

@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 import "./styles.scss";
 
@@ -9,6 +10,7 @@ interface BurgerButtonProps {
 }
 
 export default function BurgerButton({ isOpen, onToggle }: BurgerButtonProps) {
+  const { t } = useTranslation();
   const line1Ref = useRef<HTMLSpanElement>(null);
   const line2Ref = useRef<HTMLSpanElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -55,7 +57,7 @@ export default function BurgerButton({ isOpen, onToggle }: BurgerButtonProps) {
       ref={buttonRef}
       type="button"
       className={`burger-button ${isOpen ? "burger-button--active" : ""}`}
-      aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+      aria-label={isOpen ? t("menu.closeMenu") : t("menu.openMenu")}
       aria-expanded={isOpen}
       onClick={onToggle}
     >
