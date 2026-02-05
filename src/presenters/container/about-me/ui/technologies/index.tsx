@@ -1,4 +1,5 @@
-import { MouseEvent, useRef } from "react";
+import { useRef } from "react";
+import type { MouseEvent, RefObject } from "react";
 import { useGSAP } from "@gsap/react";
 
 import { TechnologyCard } from "../../../../components/ui";
@@ -24,7 +25,8 @@ const dimensions = {
 };
 
 export default function Technologies() {
-  const gridBoxRef = useRef<HTMLDivElement>(null);
+  const gridBoxRef: RefObject<HTMLDivElement | null> =
+    useRef<HTMLDivElement>(null);
   const ctx = useRef<ReturnType<typeof handleOnHoverCard> | null>(null);
 
   const onEnter = (evt: MouseEvent<HTMLElement>) => {
