@@ -1,7 +1,8 @@
+import { SOCIAL_URLS } from "@/lib/constants/social";
 import { LinkSimple } from "phosphor-react";
 import Flex from "../flex";
 import Heading from "../heading";
-import { SOCIAL_URLS } from "@/lib/constants/social";
+import SplitText from "../split-text";
 
 const links = [
   { label: "ig", url: SOCIAL_URLS.INSTAGRAM, title: "Instagram" },
@@ -9,6 +10,23 @@ const links = [
   { label: "gh", url: SOCIAL_URLS.GITHUB, title: "Github" },
   { label: "tw", url: SOCIAL_URLS.TWITTER, title: "Twitter" },
 ] as const;
+
+function SocialLinkLabel({ label }: { label: string }) {
+  return (
+    <SplitText
+      firstSplit={
+        <Heading as="span" size="small" textColor="gray" weight="semibold">
+          {label}
+        </Heading>
+      }
+      lastSplit={
+        <Heading as="span" size="small" textColor="gray" weight="semibold">
+          {label}
+        </Heading>
+      }
+    />
+  );
+}
 
 export default function SocialMedia() {
   return (
@@ -43,9 +61,7 @@ export default function SocialMedia() {
           rel="noopener noreferrer"
           title={title}
         >
-          <Heading as="span" size="small" textColor="gray" weight="semibold">
-            {label}
-          </Heading>
+          <SocialLinkLabel label={label} />
         </a>
       ))}
     </Flex>
