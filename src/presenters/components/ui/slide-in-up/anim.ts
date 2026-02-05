@@ -22,12 +22,17 @@ export const handleSlideIn = (
           },
         },
       })
-      .from(
+      .fromTo(
         list,
         {
           yPercent: 170,
           skewY: 2,
-          opacity: 0.0001,
+          opacity: 0,
+        },
+        {
+          yPercent: 0,
+          skewY: 0,
+          opacity: 1,
         },
         0.1
       );
