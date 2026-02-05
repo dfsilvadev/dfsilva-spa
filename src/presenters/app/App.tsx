@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
 import { useEffect, useRef, useState } from "react";
 
-import { LoadingScreen } from "@/presenters/components/ui";
+import { LoadingScreen, Navbar } from "@/presenters/components/ui";
 import { ScrollProvider, useScroll } from "@/presenters/contexts/ScrollContext";
 import { Routes } from "@/presenters/routes/routes";
 
@@ -201,6 +201,8 @@ function App() {
       >
         <AppContent />
       </div>
+      {/* Navbar fora do wrapper para o burger não ficar atrás das sections (stacking context) */}
+      <Navbar />
       <AnimatePresence onExitComplete={() => setLoadingExited(true)}>
         {isLoading && <LoadingScreen key="loading" />}
       </AnimatePresence>

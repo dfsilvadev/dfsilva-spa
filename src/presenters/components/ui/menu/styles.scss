@@ -3,7 +3,8 @@
 .menu__backdrop {
   position: fixed;
   inset: 0;
-  z-index: $layer-menu;
+  /* Acima da navbar para cobrir a tela quando o menu está aberto */
+  z-index: $layer-always-on-top;
   background-color: rgba($color-background-black, 0.5);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -13,7 +14,8 @@
   position: fixed;
   top: 1.6rem;
   right: 1.6rem;
-  z-index: $layer-modal;
+  /* Acima do backdrop */
+  z-index: $layer-always-on-top;
   width: 100%;
   max-width: 42rem;
   background-color: $color-background-light;
