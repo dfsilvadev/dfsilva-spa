@@ -42,7 +42,7 @@ export default function Projects() {
   }, [isPaused]);
 
   return (
-    <section className="projects">
+    <section id="projects" className="projects">
       <div className="projects__header grid grid--border-light grid--has-divider">
         <GridColumn className="projects__first-column">
           <SectionHeading>

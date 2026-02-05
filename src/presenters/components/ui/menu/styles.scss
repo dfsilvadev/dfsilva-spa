@@ -1,0 +1,235 @@
+@use "../../../../styles/theme/variables" as *;
+
+.menu__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: $layer-menu;
+  background-color: rgba($color-background-black, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.menu__panel {
+  position: fixed;
+  top: 1.6rem;
+  right: 1.6rem;
+  z-index: $layer-modal;
+  width: 100%;
+  max-width: 42rem;
+  background-color: $color-background-light;
+  border-radius: 1.6rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid $color-border-light;
+  box-sizing: border-box;
+}
+
+.menu__panel-inner {
+  padding: 2.4rem;
+}
+
+.menu__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3.2rem;
+}
+
+.menu__header-info {
+  font-size: $font-size-main-small;
+  color: $color-text-main;
+
+  .menu__header-place {
+    font-weight: $font-weight-medium;
+    color: $color-text-heading;
+  }
+}
+
+.menu__close {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: $font-size-main-small;
+  color: $color-text-main;
+  font-family: $font-family;
+  cursor: pointer;
+  transition: color $transition-default;
+
+  &:hover {
+    color: $color-text-heading;
+  }
+}
+
+.menu__close-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  border: 1px solid $color-border-light;
+  color: $color-text-heading;
+  transition: border-color $transition-default;
+
+  .menu__close:hover & {
+    border-color: $color-text-heading;
+  }
+}
+
+.menu__content {
+  display: flex;
+  gap: 3.2rem;
+}
+
+.menu__nav {
+  flex: 1;
+}
+
+.menu__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu__item {
+  margin: 0;
+}
+
+.menu__link {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.4rem 0;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+  font-family: $font-family;
+  font-size: 3rem;
+  font-weight: $font-weight-semibold;
+  color: $color-text-heading;
+  cursor: pointer;
+  transition: color $transition-default;
+
+  &:hover {
+    color: $color-text-main;
+  }
+}
+
+.menu__link-label {
+  display: block;
+}
+
+.menu__link-count {
+  font-size: 1.2rem;
+  font-weight: $font-weight-regular;
+  color: $color-text-main;
+  border: 1px solid $color-border-light;
+  border-radius: 999px;
+  padding: 0.2rem 0.8rem;
+}
+
+.menu__social {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding-top: 0.8rem;
+  gap: 0.4rem;
+}
+
+.menu__social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: $font-size-main-small;
+  color: $color-text-main;
+  text-decoration: none;
+  text-transform: lowercase;
+  transition: color $transition-default;
+
+  &:hover {
+    color: $color-text-heading;
+  }
+}
+
+.menu__footer {
+  margin-top: 3.2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid $color-border-light;
+}
+
+.menu__footer-email {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: $font-size-main-medium;
+  color: $color-text-heading;
+  text-decoration: none;
+  transition: color $transition-default;
+
+  &:hover {
+    color: $color-main-primary;
+  }
+}
+
+.menu__indicator {
+  position: absolute;
+  top: 2.4rem;
+  right: 2.4rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  background-color: $color-main-secondary;
+  border-radius: 50%;
+}
+
+@media (max-width: $breakpoint-md) {
+  .menu__panel {
+    top: 1rem;
+    right: 1rem;
+    left: 1rem;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .menu__panel-inner {
+    padding: 1.6rem;
+    min-width: 0;
+  }
+
+  .menu__content {
+    flex-direction: column;
+    gap: 2rem;
+    min-width: 0;
+  }
+
+  .menu__nav {
+    min-width: 0;
+  }
+
+  .menu__link {
+    font-size: $font-size-heading-regular;
+  }
+
+  .menu__social {
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-width: 0;
+    gap: 0.8rem;
+  }
+
+  .menu__social-link {
+    flex-shrink: 0;
+  }
+
+  .menu__footer-email {
+    flex-wrap: wrap;
+    word-break: break-all;
+  }
+}
