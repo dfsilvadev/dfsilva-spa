@@ -27,7 +27,7 @@ export default function Contact() {
 
           <GridColumn className="contact__last-column">
             <SectionHeading hasBorder={false}>
-              <ArrowDown size={20} className="greaterThan" />
+              <ArrowDown size={14} className="greaterThan" />
 
               <div className="contact__intro-text">
                 <Text size="small" weight="semibold">
@@ -63,7 +63,7 @@ export default function Contact() {
             <div className="contact__boxes-grid">
               <SplitBox
                 firstSplit={<Text>Telefone</Text>}
-                lastSplit={<Text textColor="white">+55 11 95199-1612</Text>}
+                lastSplit={<Text textColor="white">+55 11 9 5199-1612</Text>}
                 icon={<Phone />}
                 alignY="flex-end"
               />

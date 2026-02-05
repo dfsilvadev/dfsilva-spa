@@ -18,7 +18,7 @@ export default function Footer() {
         <GridColumn className="hero-footer__first-column">
           <SlideInUp data-slidein="up">
             <Flex align="center" gap="0.8rem">
-              <ArrowDown size={20} />
+              <ArrowDown />
               <SplitText
                 firstSplit={
                   <Text size="small" textColor="gray" weight="semibold">

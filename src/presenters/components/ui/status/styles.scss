@@ -7,6 +7,9 @@ $status-bubble-size: 0.5rem;
   position: relative;
   width: $status-size;
   height: $status-size;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .status__bubble {

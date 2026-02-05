@@ -2,7 +2,8 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { type PropsWithChildren, useRef } from "react";
 
-const STRENGTH = 0.65;
+const STRENGTH = 0.4;
+const MAX_OFFSET = 24; // limite para não “grudar” nas bordas
 const ELASTIC = "elastic.out(1, 0.3)";
 const DURATION = 1;
 
@@ -23,12 +24,20 @@ export default function Magnetic({ children }: PropsWithChildren) {
     });
 
     const onMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e;
-      const { height, width, left, top } = el.getBoundingClientRect();
-      const x = clientX - (left + width / 2);
-      const y = clientY - (top + height / 2);
-      xTo(x * STRENGTH);
-      yTo(y * STRENGTH);
+      const target = e.currentTarget as HTMLElement;
+      const { offsetX, offsetY } = e;
+      const { clientWidth, clientHeight } = target;
+
+      // calcula a posição do mouse em relação ao centro do próprio elemento
+      const x = offsetX - clientWidth / 2;
+      const y = offsetY - clientHeight / 2;
+
+      // aplica força e limita o deslocamento máximo em cada eixo
+      const nextX = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, x * STRENGTH));
+      const nextY = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, y * STRENGTH));
+
+      xTo(nextX);
+      yTo(nextY);
     };
 
     const onMouseLeave = () => {

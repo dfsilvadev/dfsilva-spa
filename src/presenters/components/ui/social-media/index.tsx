@@ -32,7 +32,7 @@ export default function SocialMedia() {
   return (
     <Flex align="center" gap="1.6rem">
       <Flex align="center" gap="0.8rem">
-        <LinkSimple size={20} weight="regular" aria-hidden />
+        <LinkSimple weight="regular" aria-hidden />
         <Heading
           as="span"
           size="small"

@@ -13,7 +13,7 @@ export default function Status() {
     const tween = gsap.from(el, {
       scale: 0,
       ease: "power1.easeOut",
-      duration: 1.5,
+      duration: 0.8,
       yoyo: true,
       repeat: -1,
     });
