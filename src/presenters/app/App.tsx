@@ -13,6 +13,10 @@ const scrollEasing = (t: number) => 1 - Math.pow(1 - t, 5);
 const LOADING_TOTAL_MS = 4500; // 2500ms barra + 2000ms após 100%
 const LOADING_BG = "#040405"; // mesmo fundo da LoadingScreen
 
+const isAppleDevice = () =>
+  typeof navigator !== "undefined" &&
+  /iPad|iPhone|iPod|Macintosh|Mac OS/i.test(navigator.userAgent);
+
 const preloadBaseAndHome = () =>
   Promise.all([
     import("@/presenters/layout/base"),
@@ -133,23 +137,48 @@ function App() {
     document.documentElement.style.height = "";
 
     if (loadingExited) {
-      const isTouchDevice =
+      const isTouch =
         typeof window !== "undefined" &&
         window.matchMedia?.("(pointer: coarse)").matches;
+      const apple = isAppleDevice();
 
-      const applyAndRefresh = () => {
+      const applyStyles = () => {
         document.body.style.background = "#fff";
         document.documentElement.style.background = "#fff";
         rootEl?.style.removeProperty("background");
+      };
+
+      const refreshScrollTrigger = () => {
+        void document.body.offsetHeight;
         ScrollTrigger.refresh();
-        // No mobile: forçar reflow para o compositor atualizar camadas (evita preto/bordas ao scrollar)
-        if (isTouchDevice) {
+      };
+
+      if (apple) {
+        // WebKit (Apple): camadas de composição podem ficar desatualizadas; double rAF + refresh atrasado
+        applyStyles();
+        let timeoutId: ReturnType<typeof setTimeout> | undefined;
+        const raf1 = requestAnimationFrame(() => {
+          refreshScrollTrigger();
+          requestAnimationFrame(() => {
+            refreshScrollTrigger();
+            timeoutId = setTimeout(() => refreshScrollTrigger(), 120);
+          });
+        });
+        return () => {
+          cancelAnimationFrame(raf1);
+          if (timeoutId != null) clearTimeout(timeoutId);
+          resetStyles();
+        };
+      }
+
+      const rafId = requestAnimationFrame(() => {
+        applyStyles();
+        ScrollTrigger.refresh();
+        if (isTouch) {
           void document.body.offsetHeight;
           requestAnimationFrame(() => ScrollTrigger.refresh());
         }
-      };
-
-      const rafId = requestAnimationFrame(applyAndRefresh);
+      });
       return () => {
         cancelAnimationFrame(rafId);
         resetStyles();
@@ -162,7 +191,16 @@ function App() {
 
   return (
     <ScrollProvider>
-      <AppContent />
+      {/* isolation no Apple/WebKit evita que camadas (ex.: hero preto) vazem entre sections */}
+      <div
+        style={{
+          isolation: isAppleDevice() ? ("isolate" as const) : undefined,
+          position: "relative",
+          minHeight: "100%",
+        }}
+      >
+        <AppContent />
+      </div>
       <AnimatePresence onExitComplete={() => setLoadingExited(true)}>
         {isLoading && <LoadingScreen key="loading" />}
       </AnimatePresence>

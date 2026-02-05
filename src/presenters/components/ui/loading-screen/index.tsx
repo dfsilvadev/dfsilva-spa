@@ -8,6 +8,11 @@ const isTouchDevice = () =>
   typeof window !== "undefined" &&
   window.matchMedia?.("(pointer: coarse)").matches;
 
+/** WebKit em dispositivos Apple pode deixar camada de transform "presa"; exit só com opacity evita isso */
+const isAppleDevice = () =>
+  typeof navigator !== "undefined" &&
+  /iPad|iPhone|iPod|Macintosh|Mac OS/i.test(navigator.userAgent);
+
 const LOADING_DURATION_MS = 2500;
 const LOADING_STEPS = 100;
 const GLITCH_TIMES = [0, 0.1, 0.12, 0.3, 0.32, 0.5, 0.52, 0.7, 0.85, 1];
@@ -34,19 +39,23 @@ export default function LoadingScreen() {
     return () => clearInterval(timer);
   }, []);
 
+  const exitAnimation = isAppleDevice()
+    ? {
+        opacity: 0,
+        transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
+      }
+    : {
+        opacity: 0,
+        scale: 1.03,
+        transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] as const },
+      };
+
   return (
     <motion.div
       className="loading-screen"
       initial={{ opacity: 1, scale: 1 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{
-        opacity: 0,
-        scale: 1.03,
-        transition: {
-          duration: 0.9,
-          ease: [0.22, 1, 0.36, 1],
-        },
-      }}
+      exit={exitAnimation}
       style={isTouchDevice() ? undefined : { backfaceVisibility: "hidden" }}
     >
       <motion.div
