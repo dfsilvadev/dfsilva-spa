@@ -1,4 +1,5 @@
 import { ArrowDown, EnvelopeSimple, MapPin, Phone } from "phosphor-react";
+import { useTranslation } from "react-i18next";
 
 import {
   Flex,
@@ -15,13 +16,15 @@ import {
 import "./styles.scss";
 
 export default function Contact() {
+  const { t } = useTranslation();
+
   return (
     <section id="contact" className="contact">
       <div className="contact__header">
         <Grid>
           <GridColumn className="contact__first-column">
             <SectionHeading>
-              <TypingText>Vamos conversar?</TypingText>
+              <TypingText>{t("contact.title")}</TypingText>
             </SectionHeading>
           </GridColumn>
 
@@ -31,15 +34,13 @@ export default function Contact() {
 
               <div className="contact__intro-text">
                 <Text size="small" weight="semibold">
-                  Sinta-se à vontade para entrar em contato.
+                  {t("contact.intro1")}
                 </Text>
                 <Text size="small" weight="semibold">
-                  Fico feliz em conversar para discutir ideias e trocar
-                  experiências.
+                  {t("contact.intro2")}
                 </Text>
                 <Text size="small" weight="semibold">
-                  Se você tiver apenas dúvidas ou quiser dizer oi, tudo bem
-                  também!
+                  {t("contact.intro3")}
                 </Text>
               </div>
             </SectionHeading>
@@ -62,31 +63,31 @@ export default function Contact() {
           <GridColumn className="contact__boxes-column">
             <div className="contact__boxes-grid">
               <SplitBox
-                firstSplit={<Text>Telefone</Text>}
+                firstSplit={<Text>{t("contact.phone")}</Text>}
                 lastSplit={<Text textColor="white">+55 11 9 5199-1612</Text>}
                 icon={<Phone />}
                 alignY="flex-end"
               />
 
               <SplitBox
-                firstSplit={<Text>E-mail</Text>}
+                firstSplit={<Text>{t("contact.email")}</Text>}
                 lastSplit={<Text textColor="white">dfsilva.dxp@gmail.com</Text>}
                 icon={<EnvelopeSimple />}
                 alignY="flex-end"
               />
 
               <SplitBox
-                firstSplit={<Text>Localidade</Text>}
-                lastSplit={<Text textColor="white">Suzano, SP - Brasil</Text>}
+                firstSplit={<Text>{t("contact.location")}</Text>}
+                lastSplit={
+                  <Text textColor="white">{t("contact.locationValue")}</Text>
+                }
                 icon={<MapPin />}
                 alignY="flex-end"
               />
 
               <SplitBox
-                firstSplit={<Text>Daniel F. da Silva</Text>}
-                lastSplit={
-                  <Text textColor="white">Sênior Frontend Developer</Text>
-                }
+                firstSplit={<Text>{t("contact.name")}</Text>}
+                lastSplit={<Text textColor="white">{t("contact.role")}</Text>}
                 icon={<Logo size="sm" color="dark" />}
                 alignY="flex-end"
               />

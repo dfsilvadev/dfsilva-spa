@@ -1,4 +1,5 @@
 import { ArrowDown } from "phosphor-react";
+import { useTranslation } from "react-i18next";
 
 import {
   Avatar,
@@ -19,6 +20,8 @@ import { AboutMeDisplay, LetsTalk, Technologies } from "./ui";
 import "./styles.scss";
 
 export default function AboutMe() {
+  const { t } = useTranslation();
+
   return (
     <section id="about" className="about-me">
       <SectionDivider />
@@ -26,7 +29,7 @@ export default function AboutMe() {
       <Grid>
         <GridColumn className="about-me__first-column">
           <SectionHeading>
-            <TypingText>Sobre mim</TypingText>
+            <TypingText>{t("about.title")}</TypingText>
           </SectionHeading>
 
           <div className="about-me__first-column-body">
@@ -49,7 +52,7 @@ export default function AboutMe() {
                   <Status />
 
                   <Text size="xsmall" weight="semibold" textColor="gray">
-                    <TypingText>De Suzano, SP - BR</TypingText>
+                    <TypingText>{t("about.location")}</TypingText>
                   </Text>
                 </Flex>
               </Flex>
@@ -61,8 +64,8 @@ export default function AboutMe() {
 
         <GridColumn className="about-me__last-column">
           <SectionHeading hasBorder={false}>
-            <ArrowDown />
-            <TypingText>Algumas tecnologias com as quais trabalhei</TypingText>
+            <ArrowDown className="greaterThan" />
+            <TypingText>{t("about.technologiesTitle")}</TypingText>
           </SectionHeading>
 
           <Technologies />

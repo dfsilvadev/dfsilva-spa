@@ -1,17 +1,15 @@
 import { Chat } from "phosphor-react";
+import { useTranslation } from "react-i18next";
 
 import { Grid, SplitBox, Text } from "../../../../components/ui";
 
 import "./styles.scss";
 
 export default function LetsTalk() {
+  const { t } = useTranslation();
   const email = "dfsilva.dxp@gmail.com";
-  const subject = "Olá, vamos conversar?";
-  const body = `
-Olá,
-
-Espero que esta mensagem o(a) encontre bem.
-`;
+  const subject = t("about.emailSubject");
+  const body = `${t("about.emailBodyGreeting")}\n\n${t("about.emailBodyHope")}`;
 
   return (
     <div className="about-me-lets-talk">
@@ -24,8 +22,12 @@ Espero que esta mensagem o(a) encontre bem.
             )}&body=${encodeURIComponent(body)}`}
           >
             <SplitBox
-              firstSplit={<Text textColor="default">Vamos Conversar?</Text>}
-              lastSplit={<Text textColor="white">Ficarei feliz com isso!</Text>}
+              firstSplit={
+                <Text textColor="default">{t("about.letsTalkTitle")}</Text>
+              }
+              lastSplit={
+                <Text textColor="white">{t("about.letsTalkCta")}</Text>
+              }
               icon={<Chat />}
               alignY="flex-end"
             />

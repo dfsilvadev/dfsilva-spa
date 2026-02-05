@@ -1,5 +1,58 @@
 {
   "welcome": "Bem-vindo ao dfsilva-spa",
   "home": "Início",
-  "about": "Sobre"
+  "about": "Sobre",
+  "menu": {
+    "home": "Home",
+    "about": "Sobre",
+    "projects": "Projetos",
+    "contact": "Contato",
+    "close": "Fechar",
+    "closeMenu": "Fechar menu",
+    "openMenu": "Abrir menu",
+    "location": "Suzano, SP - Brasil"
+  },
+  "a11y": {
+    "skipToContent": "Pular para o conteúdo principal",
+    "photoAlt": "Foto de Daniel Silva",
+    "pauseCarousel": "Pausar carrossel",
+    "resumeCarousel": "Continuar carrossel",
+    "viewRepo": "Ver repositório: {{title}}"
+  },
+  "about": {
+    "title": "Sobre mim",
+    "location": "De Suzano, SP - BR",
+    "technologiesTitle": "Algumas tecnologias com as quais trabalhei",
+    "intro1": "Olá, meu nome é Daniel Silva e moro em Suzano - SP. Meu trabalho é criar experiências interativas únicas usando tecnologia web, e hoje atuo principalmente com",
+    "intro2": "Minha paixão por desenvolver vai além do código; também adoro a etapa de <em>UX Design</em> e gosto de participar de um projeto desde a <em>idealização da arquitetura</em> até a <em>implementação</em> e os <em>testes</em>.",
+    "intro3": "<em>\"Desenvolver tornou-se um hobby favorito\"</em> e atualmente pratico esse hobby no",
+    "intro4": "Obrigado por ler um pouco sobre mim. Fico feliz em conversar e trocar experiências sobre desenvolvimento e tecnologia.",
+    "letsTalkTitle": "Vamos conversar?",
+    "letsTalkCta": "Ficarei feliz com isso!",
+    "emailSubject": "Olá, vamos conversar?",
+    "emailBodyGreeting": "Olá,",
+    "emailBodyHope": "Espero que esta mensagem o(a) encontre bem."
+  },
+  "contact": {
+    "title": "Vamos conversar?",
+    "intro1": "Sinta-se à vontade para entrar em contato.",
+    "intro2": "Fico feliz em conversar para discutir ideias e trocar experiências.",
+    "intro3": "Se você tiver apenas dúvidas ou quiser dizer oi, tudo bem também!",
+    "phone": "Telefone",
+    "email": "E-mail",
+    "location": "Localidade",
+    "locationValue": "Suzano, SP - Brasil",
+    "name": "Daniel F. da Silva",
+    "role": "Sênior Frontend Developer"
+  },
+  "projects": {
+    "sectionTitle": "Alguns trabalhos acadêmicos",
+    "sectionSubtitle": "Confira os projetos"
+  },
+  "loading": {
+    "helloWorld": "Hello World!"
+  },
+  "footer": {
+    "name": "Daniel F. da Silva"
+  }
 }

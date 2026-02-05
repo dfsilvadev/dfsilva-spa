@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import "./styles.scss";
 
@@ -12,6 +13,7 @@ const GLITCH_X_LEFT = [0, -3, 0, 2, 0, -2, 0, 0, 1, 0];
 const GLITCH_X_RIGHT = [0, 3, 0, -2, 0, 2, 0, 0, -1, 0];
 
 export default function LoadingScreen() {
+  const { t } = useTranslation();
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function LoadingScreen() {
       initial={{ opacity: 1 }}
       exit={{
         opacity: 0,
-        transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] },
+        transition: { duration: 0.85, ease: [0.33, 1, 0.68, 1] },
       }}
     >
       <motion.div
@@ -52,7 +54,7 @@ export default function LoadingScreen() {
             times: GLITCH_TIMES,
           }}
         >
-          Hello World!
+          {t("loading.helloWorld")}
         </motion.h1>
 
         <motion.h1
@@ -67,7 +69,7 @@ export default function LoadingScreen() {
             times: GLITCH_TIMES,
           }}
         >
-          Hello World!
+          {t("loading.helloWorld")}
         </motion.h1>
 
         <motion.h1
@@ -82,7 +84,7 @@ export default function LoadingScreen() {
             times: GLITCH_TIMES,
           }}
         >
-          Hello World!
+          {t("loading.helloWorld")}
         </motion.h1>
 
         <motion.div

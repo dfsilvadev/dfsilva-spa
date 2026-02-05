@@ -11,6 +11,7 @@ import { Routes } from "@/presenters/routes/routes";
 const scrollEasing = (t: number) => 1 - Math.pow(1 - t, 5);
 
 const LOADING_TOTAL_MS = 4500; // 2500ms barra + 2000ms após 100%
+const LOADING_BG = "#040405"; // mesmo fundo da LoadingScreen
 
 function AppContent() {
   const { registerScrollTo } = useScroll();
@@ -86,27 +87,92 @@ function AppContent() {
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
+  const [showContent, setShowContent] = useState(false);
+  const [transitionDone, setTransitionDone] = useState(false);
 
+  // Ao terminar o tempo: loading sai e o conteúdo já começa a entrar (sobrepostos = sem gap branco)
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
+      setShowContent(true);
     }, LOADING_TOTAL_MS);
     return () => clearTimeout(timer);
   }, []);
 
+  // Fundo escuro + bloqueio de scroll até a transição terminar
+  useEffect(() => {
+    const resetStyles = () => {
+      document.body.style.overflow = "";
+      document.body.style.background = "";
+      document.body.style.transition = "";
+      document.documentElement.style.overflow = "";
+      document.documentElement.style.height = "";
+      document.documentElement.style.background = "";
+      document.documentElement.style.transition = "";
+    };
+
+    if (!transitionDone) {
+      document.body.style.overflow = "hidden";
+      document.body.style.background = LOADING_BG;
+      document.body.style.transition = "";
+      document.documentElement.style.overflow = "hidden";
+      document.documentElement.style.height = "100%";
+      document.documentElement.style.background = LOADING_BG;
+      document.documentElement.style.transition = "";
+      return resetStyles;
+    }
+
+    // Transição suave do fundo escuro → claro para evitar piscada
+    const duration = "0.5s";
+    document.body.style.transition = `background ${duration} ease-out`;
+    document.documentElement.style.transition = `background ${duration} ease-out`;
+    document.body.style.background = "#fff";
+    document.documentElement.style.background = "#fff";
+    document.body.style.overflow = "";
+    document.documentElement.style.overflow = "";
+    document.documentElement.style.height = "";
+
+    const t = setTimeout(() => {
+      document.body.style.background = "";
+      document.body.style.transition = "";
+      document.documentElement.style.background = "";
+      document.documentElement.style.transition = "";
+    }, 520);
+
+    return () => {
+      clearTimeout(t);
+      resetStyles();
+    };
+  }, [transitionDone]);
+
+  // Restaura estado só depois da loading sair; delay para conteúdo já preencher a tela
+  const handleLoadingExitComplete = () => {
+    setTimeout(() => setTransitionDone(true), 280);
+  };
+
   return (
     <ScrollProvider>
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" onExitComplete={handleLoadingExitComplete}>
         {isLoading && <LoadingScreen key="loading" />}
       </AnimatePresence>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isLoading ? 0 : 1 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <AppContent />
-      </motion.div>
+      {showContent && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 1,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          style={{
+            position: "relative",
+            zIndex: 0,
+            willChange: "opacity",
+          }}
+        >
+          <AppContent />
+        </motion.div>
+      )}
     </ScrollProvider>
   );
 }

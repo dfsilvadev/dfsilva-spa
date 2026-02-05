@@ -1,5 +1,58 @@
 {
   "welcome": "Welcome to dfsilva-spa",
   "home": "Home",
-  "about": "About"
+  "about": "About",
+  "menu": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "close": "Close",
+    "closeMenu": "Close menu",
+    "openMenu": "Open menu",
+    "location": "Suzano, SP - Brazil"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "photoAlt": "Photo of Daniel Silva",
+    "pauseCarousel": "Pause carousel",
+    "resumeCarousel": "Resume carousel",
+    "viewRepo": "View repository: {{title}}"
+  },
+  "about": {
+    "title": "About me",
+    "location": "From Suzano, SP - BR",
+    "technologiesTitle": "Some technologies I've worked with",
+    "intro1": "Hi, I'm Daniel Silva and I live in Suzano - SP. I create unique interactive experiences using web technology, and I currently work mainly with",
+    "intro2": "My passion for development goes beyond code; I also love the <em>UX Design</em> stage and enjoy being part of a project from <em>architecture ideation</em> through <em>implementation</em> and <em>testing</em>.",
+    "intro3": "<em>\"Development has become a favorite hobby\"</em> and I currently practice it at",
+    "intro4": "Thanks for reading a bit about me. I'm happy to chat and exchange experiences about development and technology.",
+    "letsTalkTitle": "Let's talk?",
+    "letsTalkCta": "I'll be happy to!",
+    "emailSubject": "Hi, let's talk?",
+    "emailBodyGreeting": "Hi,",
+    "emailBodyHope": "I hope this message finds you well."
+  },
+  "contact": {
+    "title": "Let's talk?",
+    "intro1": "Feel free to get in touch.",
+    "intro2": "I'm happy to chat about ideas and exchange experiences.",
+    "intro3": "If you just have questions or want to say hi, that's fine too!",
+    "phone": "Phone",
+    "email": "Email",
+    "location": "Location",
+    "locationValue": "Suzano, SP - Brazil",
+    "name": "Daniel F. da Silva",
+    "role": "Senior Frontend Developer"
+  },
+  "projects": {
+    "sectionTitle": "Some academic work",
+    "sectionSubtitle": "Check out the projects"
+  },
+  "loading": {
+    "helloWorld": "Hello World!"
+  },
+  "footer": {
+    "name": "Daniel F. da Silva"
+  }
 }

@@ -1,5 +1,6 @@
 import { ArrowDown, Pause, Play } from "phosphor-react";
 import { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import {
   Flex,
@@ -22,6 +23,7 @@ import {
 import "./styles.scss";
 
 export default function Projects() {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState<number>(0);
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const progressRefs = useRef<(HTMLSpanElement | null)[]>([]);
@@ -45,14 +47,14 @@ export default function Projects() {
       <div className="projects__header grid grid--border-light grid--has-divider">
         <GridColumn className="projects__first-column">
           <SectionHeading>
-            <TypingText>Alguns trabalhos acadêmicos</TypingText>
+            <TypingText>{t("projects.sectionTitle")}</TypingText>
           </SectionHeading>
         </GridColumn>
 
         <GridColumn className="projects__last-column greaterThan">
           <SectionHeading hasBorder={false}>
-            <ArrowDown />
-            <TypingText>Confira os projetos</TypingText>
+            <ArrowDown className="greaterThan" />
+            <TypingText>{t("projects.sectionSubtitle")}</TypingText>
           </SectionHeading>
         </GridColumn>
       </div>
@@ -94,8 +96,8 @@ export default function Projects() {
                           onClick={() => setIsPaused((prev) => !prev)}
                           aria-label={
                             isPaused
-                              ? "Continuar carrossel"
-                              : "Pausar carrossel"
+                              ? t("a11y.resumeCarousel")
+                              : t("a11y.pauseCarousel")
                           }
                         >
                           <Flex align="center" justify="center">
@@ -131,7 +133,7 @@ export default function Projects() {
                   data-content="view-all"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={`Ver repositório: ${project.title}`}
+                  aria-label={t("a11y.viewRepo", { title: project.title })}
                 >
                   <img
                     src={project.image}
