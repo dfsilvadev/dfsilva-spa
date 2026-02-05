@@ -4,6 +4,14 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 
+// URL base para meta tags e favicons (og:image, favicon absoluto).
+// Em produção: VITE_APP_URL=https://dfsilva.dev
+// Preview Vercel: VITE_APP_URL=https://dfsilva-dev.vercel.app (ou use VERCEL_URL)
+const BASE_URL =
+  process.env.VITE_APP_URL ||
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : undefined) ||
+  "https://dfsilva.dev";
+
 // https://vite.dev/config/
 export default defineConfig({
   resolve: {
@@ -12,6 +20,12 @@ export default defineConfig({
     },
   },
   plugins: [
+    {
+      name: "html-transform",
+      transformIndexHtml(html) {
+        return html.replace(/%BASE_URL%/g, BASE_URL);
+      },
+    },
     svgr(),
     react({
       babel: {
