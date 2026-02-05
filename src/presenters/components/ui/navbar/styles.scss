@@ -10,7 +10,8 @@ $navbar-height: 9rem;
   height: $navbar-height;
   background-color: transparent;
   mix-blend-mode: difference;
-  z-index: $layer-menu;
+  /* Acima das sections (evita ícone do menu ficar atrás ao scrollar, ex. com wrapper isolation no Apple) */
+  z-index: $layer-always-on-top;
 }
 
 .navbar__wrapper {
