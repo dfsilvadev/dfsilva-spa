@@ -1,0 +1,15 @@
+@use "../../../../styles/theme/variables" as *;
+
+// Aplique esta classe aos elementos com data-animation="trigger" para o efeito reveal
+.text-reveal__trigger {
+  background: linear-gradient(
+    to right,
+    $color-text-heading 50%,
+    $color-gray-200 50%
+  );
+  background-size: 200% 100%;
+  background-position-x: 100%;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}

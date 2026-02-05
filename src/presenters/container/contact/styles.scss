@@ -1,0 +1,109 @@
+@use "../../../styles/theme/variables" as *;
+
+.contact {
+  height: auto;
+}
+
+.contact__header {
+  & > .grid > .contact__first-column,
+  & > .grid > .contact__last-column {
+    padding: 0;
+  }
+}
+
+.contact__intro-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.contact__last-column .section-heading {
+  text-transform: none;
+}
+
+.contact__last-column .section-heading .flex {
+  --flex-gap: 1rem;
+}
+
+.contact__content {
+  border-top: 1.5px solid $color-border-light;
+}
+
+.contact__logo-column {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+
+  @media (max-width: $breakpoint-md) {
+    border-bottom: 1.5px solid $color-border-light;
+  }
+}
+
+.contact__logo-wrapper {
+  &.flex {
+    display: block;
+  }
+
+  position: relative;
+  width: 100%;
+
+  &::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+
+  .logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.contact__boxes-column {
+  padding: 0;
+  position: relative;
+
+  &::before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+.contact__boxes-grid {
+  display: grid;
+  position: absolute;
+  inset: 0;
+  gap: 0;
+
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+
+  & > div {
+    width: 100%;
+    height: 100%;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    & > :nth-child(1),
+    & > :nth-child(3) {
+      border-right: 1.5px solid $color-border-light;
+    }
+
+    & > :nth-child(1),
+    & > :nth-child(2) {
+      border-bottom: 1.5px solid $color-border-light;
+    }
+  }
+
+  @media (max-width: $breakpoint-md) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(4, minmax(6rem, auto));
+
+    & > :not(:last-child) {
+      border-bottom: 1.5px solid $color-border-light;
+    }
+  }
+}

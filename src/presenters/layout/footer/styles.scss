@@ -1,0 +1,21 @@
+@use "../../../styles/theme/variables" as *;
+
+.app-footer {
+  background-color: $color-background-black;
+  padding: 1.6rem 1.6rem;
+  color: $color-white;
+}
+
+.app-footer__content {
+  max-width: 179.2rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app-footer__status {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}

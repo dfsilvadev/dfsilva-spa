@@ -1,0 +1,25 @@
+@use "../../../../../styles/theme/variables" as *;
+
+.hero-footer {
+  border-top: 1.5px solid $color-border-black;
+  height: 9rem;
+}
+
+.hero-footer__first-column {
+  display: flex;
+  align-items: center;
+}
+
+.hero-footer__last-column {
+  &.greaterThan {
+    display: none;
+  }
+
+  @media (min-width: $breakpoint-md) {
+    &.greaterThan {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

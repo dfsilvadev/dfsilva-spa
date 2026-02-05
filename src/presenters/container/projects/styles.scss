@@ -1,0 +1,127 @@
+@use "../../../styles/theme/variables" as *;
+
+.projects {
+  width: 100%;
+  height: auto;
+}
+
+.projects__header {
+  & > .projects__first-column,
+  & > .projects__last-column {
+    padding: 0;
+  }
+}
+
+.projects__card {
+  width: 100%;
+  background-color: $color-white;
+  border-top: 1.5px solid $color-border-light;
+  border-bottom: 1.5px solid $color-border-light;
+}
+
+.projects__title-wrapper {
+  position: relative;
+  padding-bottom: 1rem;
+  border-bottom: 1.5px solid $color-border-light;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.projects__title-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition: color 0.3s ease;
+  font-size: 3.2rem;
+
+  &--active {
+    color: $color-text-heading;
+  }
+
+  &--inactive {
+    color: $color-gray-200;
+  }
+}
+
+.projects__pause-button {
+  display: none;
+  width: 2.8rem;
+  height: 2.8rem;
+  margin-top: 0;
+  background: $color-border-black;
+  color: $color-white;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 0.9rem;
+
+  &--active {
+    display: block;
+  }
+}
+
+.projects__figure {
+  position: relative;
+  width: 100%;
+  min-height: 36.3rem;
+  max-height: 36.3rem;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: $breakpoint-md) {
+    min-height: 42rem;
+    max-height: 42rem;
+  }
+}
+
+.projects__slide-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, visibility;
+
+  &[data-active="true"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  &[src] {
+    display: block;
+  }
+
+  &:not([src]) {
+    display: none;
+  }
+}
+
+.projects__progress-bar {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+
+  & span:last-child {
+    width: 0%;
+    height: 100%;
+    display: block;
+    transition: width 0.3s ease;
+    background-color: $color-border-black;
+  }
+}

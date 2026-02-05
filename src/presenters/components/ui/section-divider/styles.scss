@@ -1,0 +1,9 @@
+@use "../../../../styles/theme/variables" as *;
+
+$section-divider-height: 9rem;
+
+.section-divider {
+  height: $section-divider-height;
+  border-top: 1.5px solid $color-border-light;
+  border-bottom: 1.5px solid $color-border-light;
+}

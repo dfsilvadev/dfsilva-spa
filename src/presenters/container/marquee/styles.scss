@@ -1,0 +1,65 @@
+@use "../../../styles/theme/variables" as *;
+
+.marquee {
+  height: auto;
+}
+
+.marquee__grid {
+  place-items: center;
+}
+
+.marquee__first-column {
+  padding: 0;
+
+  @media (max-width: $breakpoint-md) {
+    border-bottom: 1.5px solid $color-border-light;
+
+    h1 {
+      font-size: $font-size-heading-regular;
+    }
+  }
+}
+
+.marquee__first-column-body {
+  padding: 1.6rem;
+
+  display: flex;
+  gap: 4.5rem;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-md) {
+    padding: 3.2rem;
+  }
+}
+
+.marquee__last-column {
+  padding: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.marquee__wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marquee__track {
+  display: flex;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.marquee__word {
+  font-size: clamp(3rem, 7vw, 6rem);
+  font-weight: $font-weight-semibold;
+  text-transform: uppercase;
+  margin-right: 3rem;
+  color: $color-text-heading;
+
+  &:after {
+    content: " *";
+    margin-left: 3rem;
+    color: $color-main-primary;
+  }
+}

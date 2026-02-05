@@ -1,0 +1,19 @@
+@use "../../../../styles/theme/variables" as *;
+
+$navbar-height: 9rem;
+
+.navbar-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $navbar-height;
+  background-color: transparent;
+  mix-blend-mode: difference;
+  z-index: $layer-menu;
+}
+
+.navbar__wrapper {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+}

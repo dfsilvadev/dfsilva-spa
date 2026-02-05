@@ -1,0 +1,85 @@
+@use "../../../../styles/theme/variables" as *;
+
+.tooltip__content {
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  font-size: $font-size-main-xsmall;
+  font-weight: $font-weight-semibold;
+  line-height: 1;
+  user-select: none;
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  box-shadow:
+    hsl(206 22% 7% / 35%) 0 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0 10px 20px -15px;
+
+  &[data-state="delayed-open"][data-side="top"] {
+    animation-name: tooltip-slide-down-fade;
+  }
+  &[data-state="delayed-open"][data-side="right"] {
+    animation-name: tooltip-slide-left-fade;
+  }
+  &[data-state="delayed-open"][data-side="bottom"] {
+    animation-name: tooltip-slide-up-fade;
+  }
+  &[data-state="delayed-open"][data-side="left"] {
+    animation-name: tooltip-slide-right-fade;
+  }
+
+  &--black {
+    background-color: $color-background-black;
+    color: $color-gray-50;
+    fill: $color-background-black;
+  }
+
+  &--white {
+    background-color: $color-white;
+    color: $color-text-main;
+    fill: $color-white;
+  }
+}
+
+@keyframes tooltip-slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tooltip-slide-right-fade {
+  from {
+    opacity: 0;
+    transform: translateX(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes tooltip-slide-down-fade {
+  from {
+    opacity: 0;
+    transform: translateY(-2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes tooltip-slide-left-fade {
+  from {
+    opacity: 0;
+    transform: translateX(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

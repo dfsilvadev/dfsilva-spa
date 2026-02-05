@@ -1,0 +1,60 @@
+@use "../../../../styles/theme/variables" as *;
+
+$split-box-padding: 2.4rem;
+
+.split-box__content {
+  width: 100%;
+  height: 100%;
+  padding: $split-box-padding;
+  color: $color-text-main;
+  display: flex;
+  align-items: center;
+
+  svg {
+    font-size: inherit;
+  }
+
+  &--border-black {
+    border: 1px solid $color-border-black;
+  }
+  &--border-light {
+    border: 1px solid $color-border-light;
+  }
+  &--border-none {
+    border: 1px solid transparent;
+  }
+
+  &--align-end {
+    align-items: flex-end;
+  }
+}
+
+.split-box__splitter {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.split-box__overflow {
+  width: fit-content;
+  height: 3rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.split-box__item {
+  padding: 0.5rem;
+}
+
+.split-box__icon-wrap {
+  width: fit-content;
+  height: auto;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
