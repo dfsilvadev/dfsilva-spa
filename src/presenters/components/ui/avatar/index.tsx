@@ -15,6 +15,7 @@ const Avatar = () => {
           alt="Foto de Daniel Silva"
           width={100}
           height={139}
+          decoding="async"
           className="avatar-img"
         />
       </div>

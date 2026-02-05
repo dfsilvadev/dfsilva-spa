@@ -11,7 +11,7 @@ interface BurgerButtonProps {
 export default function BurgerButton({ isOpen, onToggle }: BurgerButtonProps) {
   const line1Ref = useRef<HTMLSpanElement>(null);
   const line2Ref = useRef<HTMLSpanElement>(null);
-  const buttonRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!line1Ref.current || !line2Ref.current) return;
@@ -51,17 +51,18 @@ export default function BurgerButton({ isOpen, onToggle }: BurgerButtonProps) {
   }, [isOpen]);
 
   return (
-    <div
+    <button
       ref={buttonRef}
+      type="button"
       className={`burger-button ${isOpen ? "burger-button--active" : ""}`}
-      role="button"
       aria-label={isOpen ? "Fechar menu" : "Abrir menu"}
+      aria-expanded={isOpen}
       onClick={onToggle}
     >
       <div className="burger-button__lines">
         <span ref={line1Ref} className="burger-button__line" />
         <span ref={line2Ref} className="burger-button__line" />
       </div>
-    </div>
+    </button>
   );
 }
