@@ -3,6 +3,7 @@ import { Outlet } from "react-router";
 import { Navbar } from "@/presenters/components/ui";
 
 import LineCursor from "@/presenters/components/ui/line-cursor";
+import Footer from "../footer";
 import "./styles.scss";
 
 const Base = () => {
@@ -14,6 +15,7 @@ const Base = () => {
         <LineCursor />
         <Outlet />
       </main>
+      <Footer />
     </div>
   );
 };
