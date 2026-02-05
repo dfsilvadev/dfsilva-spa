@@ -33,11 +33,17 @@ export default function LoadingScreen() {
   return (
     <motion.div
       className="loading-screen"
-      initial={{ opacity: 1 }}
+      initial={{ opacity: 1, scale: 1 }}
+      animate={{ opacity: 1, scale: 1 }}
       exit={{
         opacity: 0,
-        transition: { duration: 0.85, ease: [0.33, 1, 0.68, 1] },
+        scale: 1.03,
+        transition: {
+          duration: 0.9,
+          ease: [0.22, 1, 0.36, 1],
+        },
       }}
+      style={{ backfaceVisibility: "hidden" }}
     >
       <motion.div
         className="loading-screen__title-wrap"

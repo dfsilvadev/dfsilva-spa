@@ -1,6 +1,6 @@
+import { AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { AnimatePresence, motion } from "framer-motion";
 import Lenis from "lenis";
 import { useEffect, useRef, useState } from "react";
 
@@ -12,6 +12,12 @@ const scrollEasing = (t: number) => 1 - Math.pow(1 - t, 5);
 
 const LOADING_TOTAL_MS = 4500; // 2500ms barra + 2000ms após 100%
 const LOADING_BG = "#040405"; // mesmo fundo da LoadingScreen
+
+const preloadBaseAndHome = () =>
+  Promise.all([
+    import("@/presenters/layout/base"),
+    import("@/presenters/pages/Home").then((m) => m.Home),
+  ]);
 
 function AppContent() {
   const { registerScrollTo } = useScroll();
@@ -87,92 +93,68 @@ function AppContent() {
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [showContent, setShowContent] = useState(false);
-  const [transitionDone, setTransitionDone] = useState(false);
+  const [loadingExited, setLoadingExited] = useState(false);
 
-  // Ao terminar o tempo: loading sai e o conteúdo já começa a entrar (sobrepostos = sem gap branco)
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-      setShowContent(true);
-    }, LOADING_TOTAL_MS);
-    return () => clearTimeout(timer);
+    let cancelled = false;
+    const minDelay = new Promise((r) => setTimeout(r, LOADING_TOTAL_MS));
+    Promise.all([minDelay, preloadBaseAndHome()]).then(() => {
+      if (!cancelled) setIsLoading(false);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  // Fundo escuro + bloqueio de scroll até a transição terminar
   useEffect(() => {
+    const rootEl = document.getElementById("root");
     const resetStyles = () => {
       document.body.style.overflow = "";
       document.body.style.background = "";
-      document.body.style.transition = "";
       document.documentElement.style.overflow = "";
       document.documentElement.style.height = "";
       document.documentElement.style.background = "";
-      document.documentElement.style.transition = "";
+      rootEl?.style.removeProperty("background");
     };
 
-    if (!transitionDone) {
+    if (isLoading) {
       document.body.style.overflow = "hidden";
       document.body.style.background = LOADING_BG;
-      document.body.style.transition = "";
       document.documentElement.style.overflow = "hidden";
       document.documentElement.style.height = "100%";
       document.documentElement.style.background = LOADING_BG;
-      document.documentElement.style.transition = "";
+      if (rootEl) rootEl.style.background = LOADING_BG;
       return resetStyles;
     }
 
-    // Transição suave do fundo escuro → claro para evitar piscada
-    const duration = "0.5s";
-    document.body.style.transition = `background ${duration} ease-out`;
-    document.documentElement.style.transition = `background ${duration} ease-out`;
-    document.body.style.background = "#fff";
-    document.documentElement.style.background = "#fff";
+    // Restaura scroll; não pinta body/root de preto aqui (a overlay da loading já tem o fundo escuro; pintar body quebra e mostra bordas)
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
     document.documentElement.style.height = "";
 
-    const t = setTimeout(() => {
-      document.body.style.background = "";
-      document.body.style.transition = "";
-      document.documentElement.style.background = "";
-      document.documentElement.style.transition = "";
-    }, 520);
+    if (loadingExited) {
+      // Fundo branco no próximo frame após a animação de saída terminar
+      const rafId = requestAnimationFrame(() => {
+        document.body.style.background = "#fff";
+        document.documentElement.style.background = "#fff";
+        rootEl?.style.removeProperty("background");
+      });
+      return () => {
+        cancelAnimationFrame(rafId);
+        resetStyles();
+      };
+    }
 
-    return () => {
-      clearTimeout(t);
-      resetStyles();
-    };
-  }, [transitionDone]);
-
-  // Restaura estado só depois da loading sair; delay para conteúdo já preencher a tela
-  const handleLoadingExitComplete = () => {
-    setTimeout(() => setTransitionDone(true), 280);
-  };
+    // Durante o fade-out: deixa o cleanup anterior ter limpo o background (volta ao branco do CSS)
+    return resetStyles;
+  }, [isLoading, loadingExited]);
 
   return (
     <ScrollProvider>
-      <AnimatePresence mode="wait" onExitComplete={handleLoadingExitComplete}>
+      <AppContent />
+      <AnimatePresence onExitComplete={() => setLoadingExited(true)}>
         {isLoading && <LoadingScreen key="loading" />}
       </AnimatePresence>
-
-      {showContent && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 1,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          style={{
-            position: "relative",
-            zIndex: 0,
-            willChange: "opacity",
-          }}
-        >
-          <AppContent />
-        </motion.div>
-      )}
     </ScrollProvider>
   );
 }
