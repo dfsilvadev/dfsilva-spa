@@ -20,7 +20,7 @@ import "./styles.scss";
 
 export default function AboutMe() {
   return (
-    <section className="about-me">
+    <section id="about" className="about-me">
       <SectionDivider />
 
       <Grid>

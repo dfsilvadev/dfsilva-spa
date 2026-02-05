@@ -1,14 +1,20 @@
+import { lazy, Suspense } from "react";
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
-import Base from "../layout/base";
-
-import { Home } from "@/presenters/pages/Home";
+const Base = lazy(() => import("../layout/base"));
+const Home = lazy(() =>
+  import("../pages/Home").then((m) => ({ default: m.Home }))
+);
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Base />,
+    element: (
+      <Suspense fallback={null}>
+        <Base />
+      </Suspense>
+    ),
     children: [{ index: true, element: <Home /> }],
   },
 ]);

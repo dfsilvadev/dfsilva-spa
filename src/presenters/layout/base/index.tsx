@@ -8,8 +8,11 @@ import "./styles.scss";
 const Base = () => {
   return (
     <div className="app-layout">
+      <a href="#main-content" className="skip-link">
+        Pular para o conteúdo principal
+      </a>
       <Navbar />
-      <main>
+      <main id="main-content">
         <Cursor />
         <Outlet />
       </main>

@@ -1,4 +1,4 @@
-import { Status, Text } from "@/presenters/components/ui";
+import { SplitText, Status, Text } from "@/presenters/components/ui";
 
 import "./styles.scss";
 
@@ -14,15 +14,33 @@ export default function Footer() {
   return (
     <footer className="app-footer">
       <div className="app-footer__content">
-        <Text size="small" textColor="gray" weight="semibold">
-          &copy; {yearLabel}
-        </Text>
+        <SplitText
+          firstSplit={
+            <Text size="xsmall" textColor="gray" weight="semibold">
+              &copy; {yearLabel}
+            </Text>
+          }
+          lastSplit={
+            <Text size="xsmall" textColor="gray" weight="semibold">
+              &copy; {yearLabel}
+            </Text>
+          }
+        />
 
         <div className="app-footer__status">
           <Status />
-          <Text size="small" textColor="gray" weight="semibold">
-            Daniel F. da Silva
-          </Text>
+          <SplitText
+            firstSplit={
+              <Text size="small" textColor="gray" weight="semibold">
+                Daniel F. da Silva
+              </Text>
+            }
+            lastSplit={
+              <Text size="small" textColor="gray" weight="semibold">
+                Daniel F. da Silva
+              </Text>
+            }
+          />
         </div>
       </div>
     </footer>

@@ -16,7 +16,7 @@ import "./styles.scss";
 
 export default function Contact() {
   return (
-    <section className="contact">
+    <section id="contact" className="contact">
       <div className="contact__header">
         <Grid>
           <GridColumn className="contact__first-column">

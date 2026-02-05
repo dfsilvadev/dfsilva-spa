@@ -1,6 +1,5 @@
 import { ArrowDown, Pause, Play } from "phosphor-react";
 import { useEffect, useRef, useState } from "react";
-import { Link } from "react-router";
 
 import {
   Flex,
@@ -42,7 +41,7 @@ export default function Projects() {
   }, [isPaused]);
 
   return (
-    <section className="projects">
+    <section id="projects" className="projects">
       <div className="projects__header grid grid--border-light grid--has-divider">
         <GridColumn className="projects__first-column">
           <SectionHeading>
@@ -93,6 +92,11 @@ export default function Projects() {
                             .filter(Boolean)
                             .join(" ")}
                           onClick={() => setIsPaused((prev) => !prev)}
+                          aria-label={
+                            isPaused
+                              ? "Continuar carrossel"
+                              : "Pausar carrossel"
+                          }
                         >
                           <Flex align="center" justify="center">
                             {isPaused ? (
@@ -121,10 +125,13 @@ export default function Projects() {
           <GridColumn className="projects__last-column">
             <figure className="projects__figure">
               {projects.map((project, index) => (
-                <Link
-                  to={project.repositoryURL}
+                <a
+                  href={project.repositoryURL}
                   key={index}
                   data-content="view-all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Ver repositório: ${project.title}`}
                 >
                   <img
                     src={project.image}
@@ -133,20 +140,12 @@ export default function Projects() {
                     data-active={activeIndex === index}
                     style={{ zIndex: activeIndex === index ? 2 : 1 }}
                     loading="lazy"
+                    decoding="async"
                     onError={(e) => {
-                      // eslint-disable-next-line no-console
-                      console.error(
-                        `Erro ao carregar imagem: ${project.title}`,
-                        e
-                      );
                       e.currentTarget.style.display = "none";
                     }}
-                    onLoad={() => {
-                      // eslint-disable-next-line no-console
-                      console.log(`Imagem carregada: ${project.title}`);
-                    }}
                   />
-                </Link>
+                </a>
               ))}
             </figure>
           </GridColumn>
