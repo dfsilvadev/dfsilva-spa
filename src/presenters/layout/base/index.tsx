@@ -1,7 +1,8 @@
 import { Outlet } from "react-router";
 
-import { Cursor, Navbar } from "@/presenters/components/ui";
+import { Navbar } from "@/presenters/components/ui";
 
+import LineCursor from "@/presenters/components/ui/line-cursor";
 import "./styles.scss";
 
 const Base = () => {
@@ -9,7 +10,8 @@ const Base = () => {
     <div className="app-layout">
       <Navbar />
       <main>
-        <Cursor />
+        {/* <Cursor /> */}
+        <LineCursor />
         <Outlet />
       </main>
     </div>

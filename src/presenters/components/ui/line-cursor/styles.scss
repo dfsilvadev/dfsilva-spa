@@ -8,9 +8,10 @@
   height: 100%;
   pointer-events: none;
   z-index: $layer-always-on-top;
+  mix-blend-mode: difference;
 
   line {
-    stroke: $color-border-light;
+    stroke: $color-main-primary;
     stroke-width: 2;
   }
 }

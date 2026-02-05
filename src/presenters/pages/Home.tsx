@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import { handleSlideIn } from "../components/ui";
-import { Hero } from "../container";
+import { AboutMe, Hero } from "../container";
 import "./Home.scss";
 
 export function Home() {
@@ -22,5 +22,10 @@ export function Home() {
     };
   }, []);
 
-  return <Hero />;
+  return (
+    <>
+      <Hero />
+      <AboutMe />
+    </>
+  );
 }

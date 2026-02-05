@@ -1,0 +1,33 @@
+@use "../../../styles/theme/variables" as *;
+
+.about-me {
+  height: auto;
+}
+
+.about-me__first-column {
+  padding: 0;
+
+  @media (max-width: $breakpoint-md) {
+    border-bottom: 1.5px solid $color-border-light;
+
+    h1 {
+      font-size: $font-size-heading-regular;
+    }
+  }
+}
+
+.about-me__first-column-body {
+  padding: 1.6rem;
+
+  display: flex;
+  gap: 4.5rem;
+  flex-direction: column;
+
+  @media (min-width: $breakpoint-md) {
+    padding: 3.2rem;
+  }
+}
+
+.about-me__last-column {
+  padding: 0;
+}
