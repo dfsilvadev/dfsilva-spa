@@ -4,6 +4,10 @@ import { useTranslation } from "react-i18next";
 
 import "./styles.scss";
 
+const isTouchDevice = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia?.("(pointer: coarse)").matches;
+
 const LOADING_DURATION_MS = 2500;
 const LOADING_STEPS = 100;
 const GLITCH_TIMES = [0, 0.1, 0.12, 0.3, 0.32, 0.5, 0.52, 0.7, 0.85, 1];
@@ -43,7 +47,7 @@ export default function LoadingScreen() {
           ease: [0.22, 1, 0.36, 1],
         },
       }}
-      style={{ backfaceVisibility: "hidden" }}
+      style={isTouchDevice() ? undefined : { backfaceVisibility: "hidden" }}
     >
       <motion.div
         className="loading-screen__title-wrap"

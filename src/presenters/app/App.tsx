@@ -133,12 +133,23 @@ function App() {
     document.documentElement.style.height = "";
 
     if (loadingExited) {
-      // Fundo branco no próximo frame após a animação de saída terminar
-      const rafId = requestAnimationFrame(() => {
+      const isTouchDevice =
+        typeof window !== "undefined" &&
+        window.matchMedia?.("(pointer: coarse)").matches;
+
+      const applyAndRefresh = () => {
         document.body.style.background = "#fff";
         document.documentElement.style.background = "#fff";
         rootEl?.style.removeProperty("background");
-      });
+        ScrollTrigger.refresh();
+        // No mobile: forçar reflow para o compositor atualizar camadas (evita preto/bordas ao scrollar)
+        if (isTouchDevice) {
+          void document.body.offsetHeight;
+          requestAnimationFrame(() => ScrollTrigger.refresh());
+        }
+      };
+
+      const rafId = requestAnimationFrame(applyAndRefresh);
       return () => {
         cancelAnimationFrame(rafId);
         resetStyles();
