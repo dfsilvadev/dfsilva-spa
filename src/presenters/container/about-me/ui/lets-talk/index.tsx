@@ -24,7 +24,7 @@ Espero que esta mensagem o(a) encontre bem.
             )}&body=${encodeURIComponent(body)}`}
           >
             <SplitBox
-              firstSplit={<Text textColor="default">Vamos Conversar?</Text>}
+              firstSplit={<Text textColor="default">Vamos conversar?</Text>}
               lastSplit={<Text textColor="white">Ficarei feliz com isso!</Text>}
               icon={<Chat />}
               alignY="flex-end"

@@ -61,7 +61,7 @@ export default function AboutMe() {
 
         <GridColumn className="about-me__last-column">
           <SectionHeading hasBorder={false}>
-            <ArrowDown />
+            <ArrowDown className="greaterThan" />
             <TypingText>Algumas tecnologias com as quais trabalhei</TypingText>
           </SectionHeading>
 

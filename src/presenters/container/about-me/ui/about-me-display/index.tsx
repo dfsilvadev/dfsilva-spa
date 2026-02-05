@@ -4,13 +4,13 @@ export default function AboutMeDisplay() {
   return (
     <Flex gap="1.6rem" direction="column">
       <Text>
-        Olá, meu nome é Daniel Silva e moro em Suzano - SP. Meu Meu trabalho é
-        criar experiências interativas únicas usando tecnologia web, e hoje atuo
+        Olá, meu nome é Daniel Silva e moro em Suzano - SP. Meu trabalho é criar
+        experiências interativas únicas usando tecnologia web, e hoje atuo
         principalmente com{" "}
         <Magnetic>
           <span>
             <strong>
-              <u>Reactjs</u>
+              <u>React.js</u>
             </strong>
           </span>
         </Magnetic>
@@ -34,9 +34,9 @@ export default function AboutMeDisplay() {
       </Text>
 
       <Text>
-        Minha paixão por desenvolver vai além do código; também adoro a etapa de
-        <em> UX Design</em> e gosto de participar de um projeto desde a
-        <em> idealização da arquitetura</em> até a <em>implementação</em> e os{" "}
+        Minha paixão por desenvolver vai além do código; também adoro a etapa de{" "}
+        <em>UX Design</em> e gosto de participar de um projeto desde a{" "}
+        <em>idealização da arquitetura</em> até a <em>implementação</em> e os{" "}
         <em>testes</em>.
       </Text>
 
@@ -46,7 +46,7 @@ export default function AboutMeDisplay() {
         <Magnetic>
           <span>
             <strong>
-              <u> Grupo Boticário</u>
+              <u>Grupo Boticário</u>
             </strong>
           </span>
         </Magnetic>

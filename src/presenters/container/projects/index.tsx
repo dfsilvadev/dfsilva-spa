@@ -51,7 +51,7 @@ export default function Projects() {
 
         <GridColumn className="projects__last-column greaterThan">
           <SectionHeading hasBorder={false}>
-            <ArrowDown />
+            <ArrowDown className="greaterThan" />
             <TypingText>Confira os projetos</TypingText>
           </SectionHeading>
         </GridColumn>

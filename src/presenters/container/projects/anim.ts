@@ -24,14 +24,14 @@ export const projects: Project[] = [
     title: "DT Money",
     image: work2,
     repositoryURL: "https://github.com/dfsilvadev/ignite-dtmoney-v2",
-    technologies: ["React.js", "Typescript", "Jest", "Cypress"],
+    technologies: ["React.js", "TypeScript", "Jest", "Cypress"],
     category: "Front-end",
   },
   {
     title: "Ignews",
     image: work3,
     repositoryURL: "https://github.com/dfsilvadev/ignite-ignews",
-    technologies: ["Next.js", "Typescript"],
+    technologies: ["Next.js", "TypeScript"],
     category: "Front-end",
   },
 ];
