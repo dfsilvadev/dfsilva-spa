@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import { SplitText, Status, Text } from "@/presenters/components/ui";
+import GlitchText from "@/presenters/container/hero/components/glitch-text";
 
 import "./styles.scss";
 
@@ -21,14 +22,18 @@ export default function Footer() {
       <div className="app-footer__content">
         <SplitText
           firstSplit={
-            <Text size="xsmall" textColor="gray" weight="semibold">
-              &copy; {yearLabel}
-            </Text>
+            <GlitchText>
+              <Text size="xsmall" textColor="gray" weight="semibold">
+                &copy; {yearLabel}
+              </Text>
+            </GlitchText>
           }
           lastSplit={
-            <Text size="xsmall" textColor="gray" weight="semibold">
-              &copy; {yearLabel}
-            </Text>
+            <GlitchText>
+              <Text size="xsmall" textColor="gray" weight="semibold">
+                &copy; {yearLabel}
+              </Text>
+            </GlitchText>
           }
         />
 
@@ -36,14 +41,18 @@ export default function Footer() {
           <Status />
           <SplitText
             firstSplit={
-              <Text size="small" textColor="gray" weight="semibold">
-                {name}
-              </Text>
+              <GlitchText>
+                <Text size="small" textColor="gray" weight="semibold">
+                  {name}
+                </Text>
+              </GlitchText>
             }
             lastSplit={
-              <Text size="small" textColor="gray" weight="semibold">
-                {name}
-              </Text>
+              <GlitchText>
+                <Text size="small" textColor="gray" weight="semibold">
+                  {name}
+                </Text>
+              </GlitchText>
             }
           />
         </div>
