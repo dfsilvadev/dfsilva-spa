@@ -16,12 +16,6 @@ const Cursor = () => {
   const viewAllCtx = useRef<CursorAnimationContext | null>(null);
 
   useGSAP(() => {
-    const links = document.querySelectorAll("a");
-    const buttons = document.querySelectorAll("button");
-    const viewAllContentList = document.querySelectorAll(
-      "[data-content='view-all']"
-    );
-
     cursorCtx.current = cursorMouseAnimation(polygonCursorRef);
     viewAllCtx.current = viewAllCursorAnimation(
       viewAllCursorRef,
@@ -29,33 +23,66 @@ const Cursor = () => {
       cursorRef
     );
 
-    const handleMouseMove = (evt: MouseEvent) => onMouseMove(evt, cursorRef);
+    let currentHoveredElement: HTMLElement | null = null;
+
+    const handleMouseMove = (evt: MouseEvent) => {
+      onMouseMove(evt, cursorRef);
+
+      const element = document.elementFromPoint(
+        evt.clientX,
+        evt.clientY
+      ) as HTMLElement | null;
+
+      if (!element) {
+        if (currentHoveredElement) {
+          if (currentHoveredElement.closest("[data-content='view-all']")) {
+            viewAllCtx.current?.onLeave();
+          } else {
+            cursorCtx.current?.onLeave();
+          }
+          currentHoveredElement = null;
+        }
+        return;
+      }
+
+      const link = element.closest("a");
+      const button = element.closest("button");
+      const viewAll = element.closest("[data-content='view-all']");
+
+      const targetElement = viewAll || link || button;
+
+      if (targetElement && targetElement !== currentHoveredElement) {
+        if (currentHoveredElement) {
+          if (currentHoveredElement.closest("[data-content='view-all']")) {
+            viewAllCtx.current?.onLeave();
+          } else {
+            cursorCtx.current?.onLeave();
+          }
+        }
+
+        if (viewAll) {
+          viewAllCtx.current?.onEnter();
+        } else if (link || button) {
+          cursorCtx.current?.onEnter();
+        }
+
+        currentHoveredElement = targetElement as HTMLElement;
+      } else if (!targetElement && currentHoveredElement) {
+        if (currentHoveredElement.closest("[data-content='view-all']")) {
+          viewAllCtx.current?.onLeave();
+        } else {
+          cursorCtx.current?.onLeave();
+        }
+        currentHoveredElement = null;
+      }
+    };
 
     document.addEventListener("mousemove", handleMouseMove);
 
-    viewAllContentList.forEach((content) => {
-      content.addEventListener("mouseenter", () =>
-        viewAllCtx.current?.onEnter()
-      );
-      content.addEventListener("mouseleave", () =>
-        viewAllCtx.current?.onLeave()
-      );
-    });
-
-    links?.forEach((link) => {
-      link.addEventListener("mouseenter", () => cursorCtx.current?.onEnter());
-      link.addEventListener("mouseleave", () => cursorCtx.current?.onLeave());
-    });
-
-    buttons?.forEach((button) => {
-      button.addEventListener("mouseenter", () => cursorCtx.current?.onEnter());
-      button.addEventListener("mouseleave", () => cursorCtx.current?.onLeave());
-    });
-
     return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
       cursorCtx.current?.revert();
       viewAllCtx.current?.revert();
-      document.removeEventListener("mousemove", handleMouseMove);
     };
   });
 

@@ -10,8 +10,8 @@ import { Routes } from "@/presenters/routes/routes";
 
 const scrollEasing = (t: number) => 1 - Math.pow(1 - t, 5);
 
-const LOADING_TOTAL_MS = 4500; // 2500ms barra + 2000ms após 100%
-const LOADING_BG = "#040405"; // mesmo fundo da LoadingScreen
+const LOADING_TOTAL_MS = 4500;
+const LOADING_BG = "#040405";
 
 const isAppleDevice = () =>
   typeof navigator !== "undefined" &&
