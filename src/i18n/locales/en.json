@@ -49,6 +49,9 @@
     "sectionTitle": "Some academic work",
     "sectionSubtitle": "Check out the projects"
   },
+  "books": {
+    "title": "Books I've read"
+  },
   "loading": {
     "helloWorld": "Hello World!"
   },
