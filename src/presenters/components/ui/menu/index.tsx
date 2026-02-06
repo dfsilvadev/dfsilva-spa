@@ -3,8 +3,10 @@ import { ArrowUpRight, X } from "phosphor-react";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { useScroll } from "@/presenters/contexts/ScrollContext";
+import Status from "../status";
+
 import { SOCIAL_URLS } from "@/lib/constants/social";
+import { useScroll } from "@/presenters/contexts/ScrollContext";
 
 import "./styles.scss";
 
@@ -112,7 +114,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
               <div className="menu__header">
                 <div className="menu__header-info">
                   <span className="menu__header-place">
-                    {t("menu.location")}
+                    <Status /> {t("menu.location")}
                   </span>{" "}
                   {currentTime}
                 </div>
