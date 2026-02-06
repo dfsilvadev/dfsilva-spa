@@ -21,3 +21,35 @@
   align-items: center;
   gap: 0.8rem;
 }
+
+.app-footer {
+  .hero__glitch-wrap {
+    position: relative;
+  }
+
+  .hero__glitch-text {
+    position: relative;
+
+    &--cyan {
+      position: absolute;
+      inset: 0;
+      mix-blend-mode: screen;
+
+      .heading,
+      .text {
+        color: cyan;
+      }
+    }
+
+    &--red {
+      position: absolute;
+      inset: 0;
+      mix-blend-mode: screen;
+
+      .heading,
+      .text {
+        color: red;
+      }
+    }
+  }
+}
