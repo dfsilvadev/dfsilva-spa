@@ -134,10 +134,12 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={t("a11y.viewRepo", { title: project.title })}
+                  aria-hidden={activeIndex !== index}
+                  tabIndex={activeIndex === index ? 0 : -1}
                 >
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={activeIndex === index ? project.title : ""}
                     className="projects__slide-image"
                     data-active={activeIndex === index}
                     style={{ zIndex: activeIndex === index ? 2 : 1 }}

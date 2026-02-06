@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import type { MouseEvent, RefObject } from "react";
+import { useTranslation } from "react-i18next";
 import { useGSAP } from "@gsap/react";
 
 import { TechnologyCard } from "../../../../components/ui";
@@ -25,6 +26,7 @@ const dimensions = {
 };
 
 export default function Technologies() {
+  const { t } = useTranslation();
   const gridBoxRef: RefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement>(null);
   const ctx = useRef<ReturnType<typeof handleOnHoverCard> | null>(null);
@@ -46,13 +48,20 @@ export default function Technologies() {
   });
 
   return (
-    <div className="about-me-technologies" ref={gridBoxRef}>
+    <div
+      className="about-me-technologies"
+      ref={gridBoxRef}
+      role="group"
+      aria-label={t("about.technologiesTitle")}
+    >
       <TechnologyCard
         onMouseEnter={onEnter}
         onMouseLeave={onLeave}
         data-technology="javascript"
       >
-        <JavascriptIcon {...dimensions} />
+        <span aria-hidden="true">
+          <JavascriptIcon {...dimensions} />
+        </span>
       </TechnologyCard>
 
       <TechnologyCard
@@ -60,7 +69,9 @@ export default function Technologies() {
         onMouseLeave={onLeave}
         data-technology="react"
       >
-        <ReactIcon {...dimensions} />
+        <span aria-hidden="true">
+          <ReactIcon {...dimensions} />
+        </span>
       </TechnologyCard>
 
       <TechnologyCard
@@ -68,7 +79,9 @@ export default function Technologies() {
         onMouseLeave={onLeave}
         data-technology="next"
       >
-        <NextIcon {...dimensions} />
+        <span aria-hidden="true">
+          <NextIcon {...dimensions} />
+        </span>
       </TechnologyCard>
 
       <TechnologyCard
@@ -76,7 +89,9 @@ export default function Technologies() {
         onMouseLeave={onLeave}
         data-technology="node"
       >
-        <NodeIcon {...dimensions} />
+        <span aria-hidden="true">
+          <NodeIcon {...dimensions} />
+        </span>
       </TechnologyCard>
 
       <TechnologyCard
@@ -84,7 +99,9 @@ export default function Technologies() {
         onMouseLeave={onLeave}
         data-technology="tailwind"
       >
-        <TailwindIcon {...dimensions} />
+        <span aria-hidden="true">
+          <TailwindIcon {...dimensions} />
+        </span>
       </TechnologyCard>
 
       <TechnologyCard
@@ -92,7 +109,9 @@ export default function Technologies() {
         onMouseLeave={onLeave}
         data-technology="styled-components"
       >
-        <StyledIcon {...dimensions} />
+        <span aria-hidden="true">
+          <StyledIcon {...dimensions} />
+        </span>
       </TechnologyCard>
 
       <TechnologyCard
@@ -100,7 +119,9 @@ export default function Technologies() {
         onMouseLeave={onLeave}
         data-technology="storybook"
       >
-        <StorybookIcon {...dimensions} />
+        <span aria-hidden="true">
+          <StorybookIcon {...dimensions} />
+        </span>
       </TechnologyCard>
 
       <TechnologyCard
@@ -108,7 +129,9 @@ export default function Technologies() {
         onMouseLeave={onLeave}
         data-technology="cypress"
       >
-        <CypressIcon {...dimensions} />
+        <span aria-hidden="true">
+          <CypressIcon {...dimensions} />
+        </span>
       </TechnologyCard>
     </div>
   );

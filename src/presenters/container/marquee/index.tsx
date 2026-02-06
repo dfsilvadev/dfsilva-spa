@@ -2,6 +2,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useEffect, useRef, useState } from "react";
 
+import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+
 import {
   Flex,
   GridColumn,
@@ -21,6 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Marquee() {
   const trackRef = useRef<HTMLDivElement>(null);
   const [copies, setCopies] = useState<number>(21);
+  const prefersReducedMotion = useReducedMotion();
 
   const marqueeWordBaseContent = (
     <>
@@ -31,7 +34,7 @@ export default function Marquee() {
   );
 
   useEffect(() => {
-    if (!trackRef.current) return;
+    if (!trackRef.current || prefersReducedMotion) return;
 
     const track = trackRef.current;
 
@@ -74,7 +77,7 @@ export default function Marquee() {
     return () => {
       tween.kill();
     };
-  }, [copies]);
+  }, [copies, prefersReducedMotion]);
 
   return (
     <section className="marquee">
@@ -132,7 +135,7 @@ export default function Marquee() {
 
         <GridColumn className="marquee__last-column">
           <div className="marquee__wrapper">
-            <div className="marquee__track" ref={trackRef}>
+            <div className="marquee__track" ref={trackRef} aria-hidden="true">
               {Array.from({ length: copies }).map((_, i) => (
                 <React.Fragment key={i}>
                   {marqueeWordBaseContent}

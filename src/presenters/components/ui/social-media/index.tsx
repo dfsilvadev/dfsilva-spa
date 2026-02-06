@@ -1,5 +1,6 @@
 import { SOCIAL_URLS } from "@/lib/constants/social";
 import { LinkSimple } from "phosphor-react";
+import { useTranslation } from "react-i18next";
 import Flex from "../flex";
 import Heading from "../heading";
 import SplitText from "../split-text";
@@ -29,6 +30,8 @@ function SocialLinkLabel({ label }: { label: string }) {
 }
 
 export default function SocialMedia() {
+  const { t } = useTranslation();
+
   return (
     <Flex align="center" gap="1.6rem">
       <Flex align="center" gap="0.8rem">
@@ -60,6 +63,7 @@ export default function SocialMedia() {
           target="_blank"
           rel="noopener noreferrer"
           title={title}
+          aria-label={`${title} ${t("a11y.opensNewWindow")}`}
         >
           <SocialLinkLabel label={label} />
         </a>

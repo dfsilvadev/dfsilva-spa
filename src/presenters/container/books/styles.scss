@@ -62,6 +62,22 @@ $books-floating-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.12);
   overflow: visible;
 }
 
+.books__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.books__list-item {
+  list-style: none;
+  position: sticky;
+  top: 0;
+
+  @media (max-width: $breakpoint-md) {
+    top: $books-sticky-top-mobile;
+  }
+}
+
 .books__floating-image {
   pointer-events: none;
   position: absolute;
@@ -92,27 +108,25 @@ $books-floating-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.12);
 }
 
 .books__item {
-  position: sticky;
-  top: 0;
+  width: 100%;
+  border: none;
   border-top: 1.5px solid $books-border;
   padding: 2.4rem 0;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 0.6rem;
-  cursor: default;
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: inherit;
   background-color: $books-bg;
   transition:
     opacity $transition-default,
     filter $transition-default,
     transform $transition-default;
 
-  @media (max-width: $breakpoint-md) {
-    top: $books-sticky-top-mobile;
-  }
-
   @media (min-width: $breakpoint-md) {
-    top: 0;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;

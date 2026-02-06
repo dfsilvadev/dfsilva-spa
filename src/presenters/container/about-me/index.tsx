@@ -39,7 +39,7 @@ export default function AboutMe() {
               <Flex gap="0.8rem" direction="column">
                 <TextReveal>
                   <Heading
-                    as="h1"
+                    as="h2"
                     size="large"
                     className="reveal"
                     data-animation="trigger"

@@ -24,7 +24,7 @@ export function useFloatingImagePosition() {
   }, [mouseX, mouseY]);
 
   const handleMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLDivElement>) => {
+    (e: React.MouseEvent<HTMLElement>) => {
       const container = containerRef.current;
       if (!container) return;
 
