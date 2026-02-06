@@ -26,7 +26,7 @@ export default function Books() {
   return (
     <section id="books" className="books">
       <header className="books__header">
-        <Grid>
+        <Grid borderColor="black">
           <GridColumn className="books__header-column">
             <SectionHeading>
               <TypingText>{t("books.title")}</TypingText>
@@ -36,7 +36,7 @@ export default function Books() {
       </header>
 
       <div className="books__content">
-        <Grid>
+        <Grid borderColor="black">
           <GridColumn className="books__gallery-column">
             <div
               ref={containerRef}

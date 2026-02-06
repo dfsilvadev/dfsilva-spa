@@ -1,5 +1,9 @@
 @use "../../../styles/theme/variables" as *;
 
+$books-bg: #f2f2f3;
+$books-border: #e5e5e7;
+$books-text-secondary: #5c6370;
+$books-text-tertiary: #6b7280;
 $books-floating-z-index: 100;
 $books-breakpoint-lg: 1200px;
 $books-floating-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.12);
@@ -8,6 +12,16 @@ $books-floating-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.12);
   height: auto;
   overflow: visible;
   position: relative;
+  background-color: $books-bg;
+
+  .grid {
+    border-left-color: $books-border;
+    border-right-color: $books-border;
+
+    &::after {
+      background-color: $books-border;
+    }
+  }
 }
 
 .books__header {
@@ -23,7 +37,7 @@ $books-floating-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.12);
 }
 
 .books__content {
-  border-top: 1.5px solid $color-border-light;
+  border-top: 1.5px solid $books-border;
   position: relative;
   overflow: visible;
 
@@ -77,30 +91,59 @@ $books-floating-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.12);
 }
 
 .books__item {
-  border-top: 1.5px solid $color-border-light;
+  position: sticky;
+  top: 0;
+  border-top: 1.5px solid $books-border;
   padding: 2.4rem 0;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
   cursor: default;
-  transition: opacity $transition-default;
+  background-color: $books-bg;
+  transition:
+    opacity $transition-default,
+    padding $transition-default,
+    filter $transition-default;
 
   @media (min-width: $breakpoint-md) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0;
     padding: 3.2rem 0;
+  }
+
+  &--active {
+    padding: 1.6rem 0;
+
+    @media (min-width: $breakpoint-md) {
+      padding: 2rem 0;
+    }
+  }
+
+  &--dimmed {
+    filter: blur(2px);
   }
 }
 
 .books__item-content {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.6rem;
+  min-width: 0;
+  flex: 1 1 auto;
 }
 
 .books__item-title {
   font-size: 2.4rem;
   font-weight: 300;
   color: $color-text-heading;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
   transition: opacity $transition-default;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 
   @media (min-width: $breakpoint-md) {
     font-size: 3.2rem;
@@ -111,13 +154,35 @@ $books-floating-shadow: 0 0.8rem 2.4rem rgba(0, 0, 0, 0.12);
   }
 }
 
-.books__item-author,
-.books__item-category {
-  font-size: 1.2rem;
-  color: $color-gray-200;
+.books__item-author {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: $books-text-secondary;
+  letter-spacing: 0.01em;
   transition: opacity $transition-default;
 }
 
+.books__item-category {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: $books-text-tertiary;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  transition: opacity $transition-default;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
 .books__border-bottom {
-  border-top: 1.5px solid $color-border-light;
+  border-top: 1.5px solid $books-border;
+}
+
+.books .section-divider {
+  border-top-color: $books-border;
+  border-bottom-color: $books-border;
+
+  .grid {
+    border-left-color: $books-border;
+    border-right-color: $books-border;
+  }
 }

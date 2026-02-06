@@ -22,10 +22,20 @@ const BookListItem = ({
   onMouseMove,
 }: BookListItemProps) => {
   const isDimmed = activeIndex !== null && activeIndex !== index;
+  const isActive = activeIndex === index;
+
+  const itemClassName = [
+    "books__item",
+    isActive && "books__item--active",
+    isDimmed && "books__item--dimmed",
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
     <motion.div
-      className="books__item"
+      className={itemClassName}
+      style={{ zIndex: index + 1 }}
       onMouseEnter={() => onMouseEnter(index)}
       onMouseLeave={onMouseLeave}
       onMouseMove={onMouseMove}
