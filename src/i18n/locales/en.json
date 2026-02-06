@@ -17,7 +17,8 @@
     "photoAlt": "Photo of Daniel Silva",
     "pauseCarousel": "Pause carousel",
     "resumeCarousel": "Resume carousel",
-    "viewRepo": "View repository: {{title}}"
+    "viewRepo": "View repository: {{title}}",
+    "opensNewWindow": "(opens in new window)"
   },
   "about": {
     "title": "About me",
@@ -50,10 +51,13 @@
     "sectionSubtitle": "Check out the projects"
   },
   "books": {
-    "title": "Books I've read"
+    "title": "Books I've read",
+    "listLabel": "Book list",
+    "selectBook": "View cover of {{title}}"
   },
   "loading": {
-    "helloWorld": "Hello World!"
+    "helloWorld": "Hello World!",
+    "progress": "Loading {{percent}}%"
   },
   "footer": {
     "name": "Daniel F. da Silva"

@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "phosphor-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
 import Status from "../status";
@@ -10,9 +10,13 @@ import { useScroll } from "@/presenters/contexts/ScrollContext";
 
 import "./styles.scss";
 
+const FOCUSABLE_SELECTOR =
+  'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
 interface MenuProps {
   isOpen: boolean;
   onClose: () => void;
+  burgerButtonRef: React.RefObject<HTMLButtonElement | null>;
 }
 
 const socialLinks = [
@@ -24,9 +28,11 @@ const socialLinks = [
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
-export default function Menu({ isOpen, onClose }: MenuProps) {
+export default function Menu({ isOpen, onClose, burgerButtonRef }: MenuProps) {
   const { t, i18n } = useTranslation();
   const { scrollToSection } = useScroll();
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
 
   const menuItems = [
     { labelKey: "menu.home" as const, href: "/", count: null },
@@ -55,12 +61,15 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === "Escape" && isOpen) onClose();
+      if (e.key === "Escape" && isOpen) {
+        burgerButtonRef.current?.focus();
+        onClose();
+      }
     };
 
     window.addEventListener("keydown", handleEscape);
     return () => window.removeEventListener("keydown", handleEscape);
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, burgerButtonRef]);
 
   useEffect(() => {
     if (isOpen) {
@@ -73,8 +82,52 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
     };
   }, [isOpen]);
 
-  const handleLinkClick = (href: string) => {
+  // Foco no botão fechar ao abrir o menu
+  useEffect(() => {
+    if (isOpen) {
+      closeButtonRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  // Focus trap: mantém o foco dentro do painel
+  useEffect(() => {
+    if (!isOpen || !panelRef.current) return;
+
+    const panel = panelRef.current;
+    const focusables = Array.from(
+      panel.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR)
+    ).filter((el) => !el.hasAttribute("disabled") && el.offsetParent !== null);
+
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "Tab") return;
+
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
+  const handleClose = () => {
+    burgerButtonRef.current?.focus();
     onClose();
+  };
+
+  const handleLinkClick = (href: string) => {
+    handleClose();
 
     setTimeout(() => {
       if (href === "/" || href === "#" || href === "") {
@@ -97,7 +150,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
             className="menu__backdrop"
-            onClick={onClose}
+            onClick={handleClose}
             aria-hidden
           />
 
@@ -106,6 +159,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: -10 }}
             transition={{ duration: 0.3, ease: easeOut }}
+            ref={panelRef}
             className="menu__panel"
             style={{ transformOrigin: "top right" }}
           >
@@ -119,8 +173,9 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
                   {currentTime}
                 </div>
                 <button
+                  ref={closeButtonRef}
                   type="button"
-                  onClick={onClose}
+                  onClick={handleClose}
                   className="menu__close"
                   aria-label={t("menu.closeMenu")}
                 >
@@ -188,6 +243,7 @@ export default function Menu({ isOpen, onClose }: MenuProps) {
                       className="menu__social-link"
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`${link.label} ${t("a11y.opensNewWindow")}`}
                     >
                       {link.label}
                       <ArrowUpRight size={12} weight="bold" />

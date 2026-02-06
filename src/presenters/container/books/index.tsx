@@ -50,17 +50,19 @@ export default function Books() {
                 springY={springY}
               />
 
-              {BOOKS.map((book, index) => (
-                <BookListItem
-                  key={book.id}
-                  book={book}
-                  index={index}
-                  activeIndex={activeIndex}
-                  onMouseEnter={setActiveIndex}
-                  onMouseLeave={() => setActiveIndex(null)}
-                  onMouseMove={handleMouseMove}
-                />
-              ))}
+              <ul className="books__list" aria-label={t("books.listLabel")}>
+                {BOOKS.map((book, index) => (
+                  <BookListItem
+                    key={book.id}
+                    book={book}
+                    index={index}
+                    activeIndex={activeIndex}
+                    onSelect={(i) => setActiveIndex(i === -1 ? null : i)}
+                    onMouseMove={handleMouseMove}
+                    ariaLabel={t("books.selectBook", { title: book.title })}
+                  />
+                ))}
+              </ul>
 
               <div className="books__border-bottom" />
             </div>

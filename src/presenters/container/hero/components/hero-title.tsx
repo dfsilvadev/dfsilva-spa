@@ -13,7 +13,7 @@ const HeroTitle = () => {
     <Flex direction="column">
       <SlideInUp data-slidein="up">
         <Flex>
-          <Heading size="huge" textColor="white" className="gradient">
+          <Heading as="h1" size="huge" textColor="white" className="gradient">
             {HERO_TITLES.senior}
           </Heading>
         </Flex>
@@ -22,7 +22,7 @@ const HeroTitle = () => {
       <SlideInUp data-slidein="up">
         <Flex>
           <GlitchText>
-            <Heading size="huge" textColor="white">
+            <Heading as="h2" size="huge" textColor="white">
               {HERO_TITLES.frontend}
             </Heading>
           </GlitchText>
@@ -32,7 +32,7 @@ const HeroTitle = () => {
       <SlideInUp data-slidein="up">
         <Flex>
           <GlitchText>
-            <Heading size="huge" textColor="white">
+            <Heading as="h2" size="huge" textColor="white">
               {HERO_TITLES.developer}
             </Heading>
           </GlitchText>

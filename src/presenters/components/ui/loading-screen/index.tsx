@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+import { useReducedMotion } from "@/lib/hooks/useReducedMotion";
+
 import "./styles.scss";
 
 const isTouchDevice = () =>
@@ -24,6 +26,7 @@ const GLITCH_X_RIGHT = [0, 3, 0, -2, 0, 2, 0, 0, -1, 0];
 export default function LoadingScreen() {
   const { t } = useTranslation();
   const [progress, setProgress] = useState(0);
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const interval = LOADING_DURATION_MS / LOADING_STEPS;
@@ -66,51 +69,61 @@ export default function LoadingScreen() {
       >
         <motion.h1
           className="loading-screen__title"
-          animate={{ opacity: GLITCH_OPACITY }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            times: GLITCH_TIMES,
-          }}
+          animate={
+            prefersReducedMotion ? { opacity: 1 } : { opacity: GLITCH_OPACITY }
+          }
+          transition={
+            prefersReducedMotion
+              ? {}
+              : {
+                  duration: 3,
+                  repeat: Infinity,
+                  times: GLITCH_TIMES,
+                }
+          }
         >
           {t("loading.helloWorld")}
         </motion.h1>
 
-        <motion.h1
-          className="loading-screen__title loading-screen__title--glitch-cyan"
-          animate={{
-            x: GLITCH_X_LEFT,
-            opacity: GLITCH_OPACITY_OFF,
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            times: GLITCH_TIMES,
-          }}
-        >
-          {t("loading.helloWorld")}
-        </motion.h1>
+        {!prefersReducedMotion && (
+          <>
+            <motion.h1
+              className="loading-screen__title loading-screen__title--glitch-cyan"
+              animate={{
+                x: GLITCH_X_LEFT,
+                opacity: GLITCH_OPACITY_OFF,
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                times: GLITCH_TIMES,
+              }}
+            >
+              {t("loading.helloWorld")}
+            </motion.h1>
 
-        <motion.h1
-          className="loading-screen__title loading-screen__title--glitch-red"
-          animate={{
-            x: GLITCH_X_RIGHT,
-            opacity: GLITCH_OPACITY_OFF,
-          }}
-          transition={{
-            duration: 3,
-            repeat: Infinity,
-            times: GLITCH_TIMES,
-          }}
-        >
-          {t("loading.helloWorld")}
-        </motion.h1>
+            <motion.h1
+              className="loading-screen__title loading-screen__title--glitch-red"
+              animate={{
+                x: GLITCH_X_RIGHT,
+                opacity: GLITCH_OPACITY_OFF,
+              }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                times: GLITCH_TIMES,
+              }}
+            >
+              {t("loading.helloWorld")}
+            </motion.h1>
 
-        <motion.div
-          className="loading-screen__scanline"
-          animate={{ opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 0.5, repeat: Infinity }}
-        />
+            <motion.div
+              className="loading-screen__scanline"
+              animate={{ opacity: [0.3, 0.5, 0.3] }}
+              transition={{ duration: 0.5, repeat: Infinity }}
+            />
+          </>
+        )}
       </motion.div>
 
       <motion.div
@@ -119,6 +132,14 @@ export default function LoadingScreen() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.3 }}
       >
+        <div
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+          className="visually-hidden"
+        >
+          {t("loading.progress", { percent: progress })}
+        </div>
         <span className="loading-screen__progress-start">01</span>
 
         <div className="loading-screen__progress-track">
