@@ -13,20 +13,20 @@ export const handleSlideIn = (
     const tl = gsap
       .timeline({
         paused: true,
+        delay: 4.5,
         defaults: {
-          ease: "power1.inOut",
-          duration: 0.5,
-          delay: 0.1,
+          ease: "power3.out",
+          duration: 1.1,
           stagger: {
-            amount: 0.3,
+            amount: 0.5,
           },
         },
       })
       .fromTo(
         list,
         {
-          yPercent: 170,
-          skewY: 2,
+          yPercent: 120,
+          skewY: 1,
           opacity: 0,
         },
         {

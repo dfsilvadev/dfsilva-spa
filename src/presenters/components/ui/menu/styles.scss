@@ -41,6 +41,9 @@
 .menu__header-info {
   font-size: $font-size-main-small;
   color: $color-text-main;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 
   .menu__header-place {
     font-weight: $font-weight-medium;

@@ -1,4 +1,3 @@
-import { NextIcon, NodeIcon, ReactIcon } from "../../assets/images/svg/icons";
 import {
   Flex,
   Grid,
@@ -9,8 +8,11 @@ import {
   SplitBox,
   Text,
 } from "../../components/ui";
-import "./styles.scss";
 import { Footer } from "./ui";
+
+import { NextIcon, NodeIcon, ReactIcon } from "../../assets/images/svg/icons";
+
+import "./styles.scss";
 
 const ICON_COLOR = "#fff";
 
@@ -56,24 +58,48 @@ export default function Hero() {
 
           <GridColumn className="hero__last-column">
             <SplitBox
-              firstSplit={<Text textColor="white">React</Text>}
+              firstSplit={
+                <SlideInUp data-slidein="up">
+                  <Text textColor="white">React</Text>
+                </SlideInUp>
+              }
               lastSplit={<Text textColor="white">React</Text>}
-              icon={<ReactIcon style={{ color: ICON_COLOR }} />}
+              icon={
+                <SlideInUp data-slidein="up">
+                  <ReactIcon style={{ color: ICON_COLOR }} />
+                </SlideInUp>
+              }
               alignY="flex-end"
             />
 
             <span>
               <SplitBox
-                firstSplit={<Text textColor="white">Next</Text>}
+                firstSplit={
+                  <SlideInUp data-slidein="up">
+                    <Text textColor="white">Next</Text>
+                  </SlideInUp>
+                }
                 lastSplit={<Text textColor="white">Next</Text>}
-                icon={<NextIcon style={{ color: ICON_COLOR }} />}
+                icon={
+                  <SlideInUp data-slidein="up">
+                    <NextIcon style={{ color: ICON_COLOR }} />
+                  </SlideInUp>
+                }
                 alignY="flex-end"
               />
 
               <SplitBox
-                firstSplit={<Text textColor="white">Node</Text>}
+                firstSplit={
+                  <SlideInUp data-slidein="up">
+                    <Text textColor="white">Node</Text>
+                  </SlideInUp>
+                }
                 lastSplit={<Text textColor="white">Node</Text>}
-                icon={<NodeIcon style={{ color: ICON_COLOR }} />}
+                icon={
+                  <SlideInUp data-slidein="up">
+                    <NodeIcon style={{ color: ICON_COLOR }} />
+                  </SlideInUp>
+                }
                 alignY="flex-end"
               />
             </span>

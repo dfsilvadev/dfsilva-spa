@@ -37,25 +37,43 @@ export default function Marquee() {
 
     const containerWidth =
       track.parentElement?.offsetWidth || window.innerWidth;
-    const contentWidth = track.scrollWidth / copies;
+    const totalWidth = track.scrollWidth;
+    if (!totalWidth) return;
+
+    const contentWidth = totalWidth / copies;
+    if (!contentWidth) return;
 
     const neededCopies = Math.ceil((containerWidth * 2) / contentWidth);
 
-    setCopies(neededCopies);
+    // Primeiro ajusta a quantidade de cópias; só anima quando já estiver correto
+    if (neededCopies !== copies) {
+      setCopies(neededCopies);
+      return;
+    }
 
-    requestAnimationFrame(() => {
-      const totalWidth = track.scrollWidth;
+    // Largura do loop (metade do track, já que o conteúdo está duplicado)
+    const loopWidth = totalWidth / 2;
+    if (!loopWidth) return;
 
-      gsap.to(track, {
-        x: `-=${totalWidth / 2}`,
-        duration: totalWidth / 150,
-        ease: "linear",
-        repeat: -1,
-        modifiers: {
-          x: gsap.utils.unitize((x) => parseFloat(x) % (totalWidth / 2)),
+    // Animação infinita com loop perfeito usando módulo (sem resets bruscos)
+    const tween = gsap.to(track, {
+      x: -loopWidth,
+      duration: loopWidth / 150,
+      ease: "none",
+      repeat: -1,
+      modifiers: {
+        x: (x) => {
+          const value = parseFloat(x);
+          // Mantém o valor sempre no intervalo [-loopWidth, 0)
+          const wrapped = value % -loopWidth;
+          return `${wrapped}px`;
         },
-      });
+      },
     });
+
+    return () => {
+      tween.kill();
+    };
   }, [copies]);
 
   return (
