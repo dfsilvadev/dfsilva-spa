@@ -49,6 +49,9 @@
     "sectionTitle": "Alguns trabalhos acadêmicos",
     "sectionSubtitle": "Confira os projetos"
   },
+  "books": {
+    "title": "Livros que já li"
+  },
   "loading": {
     "helloWorld": "Hello World!"
   },

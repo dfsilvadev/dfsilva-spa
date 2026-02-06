@@ -1,7 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
-import { AboutMe, Contact, Hero, Marquee, Projects } from "../container";
+import { AboutMe, Books, Contact, Hero, Marquee, Projects } from "../container";
 
 import { handleSlideIn } from "../components/ui";
 
@@ -29,6 +29,7 @@ export function Home() {
     <>
       <Hero />
       <AboutMe />
+      <Books />
       <Marquee />
       <Projects />
       <Contact />
