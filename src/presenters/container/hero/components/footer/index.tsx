@@ -9,8 +9,18 @@ import {
   Status,
   Text,
 } from "../../../../components/ui";
+
 import "./styles.scss";
 
+const FOOTER_CONTENT = {
+  learnMore: "Saiba mais",
+  author: "Daniel F. da Silva",
+} as const;
+
+/**
+ * Hero footer component
+ * Displays "Learn more" link and author info with social media
+ */
 export default function Footer() {
   return (
     <div className="hero-footer">
@@ -22,12 +32,12 @@ export default function Footer() {
               <SplitText
                 firstSplit={
                   <Text size="small" textColor="gray" weight="semibold">
-                    Saiba mais
+                    {FOOTER_CONTENT.learnMore}
                   </Text>
                 }
                 lastSplit={
                   <Text size="small" textColor="gray" weight="semibold">
-                    Saiba mais
+                    {FOOTER_CONTENT.learnMore}
                   </Text>
                 }
               />
@@ -46,12 +56,12 @@ export default function Footer() {
               <SplitText
                 firstSplit={
                   <Text size="small" textColor="gray" weight="semibold">
-                    Daniel F. da Silva
+                    {FOOTER_CONTENT.author}
                   </Text>
                 }
                 lastSplit={
                   <Text size="small" textColor="gray" weight="semibold">
-                    Daniel F. da Silva
+                    {FOOTER_CONTENT.author}
                   </Text>
                 }
               />
