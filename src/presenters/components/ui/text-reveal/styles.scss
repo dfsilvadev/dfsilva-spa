@@ -1,7 +1,7 @@
 @use "../../../../styles/theme/variables" as *;
 
-// Aplique esta classe aos elementos com data-animation="trigger" para o efeito reveal
-.text-reveal__trigger {
+// Aplique esta classe aos elementos divididos em linhas pelo SplitText
+.text-reveal__trigger :is(h1, h2, h3, h4, h5, h6, p) > div {
   background: linear-gradient(
     to right,
     $color-text-heading 50%,
