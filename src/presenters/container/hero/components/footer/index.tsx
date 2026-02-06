@@ -10,6 +10,8 @@ import {
   Text,
 } from "../../../../components/ui";
 
+import GlitchText from "../glitch-text";
+
 import "./styles.scss";
 
 const FOOTER_CONTENT = {
@@ -31,14 +33,18 @@ export default function Footer() {
               <ArrowDown />
               <SplitText
                 firstSplit={
-                  <Text size="small" textColor="gray" weight="semibold">
-                    {FOOTER_CONTENT.learnMore}
-                  </Text>
+                  <GlitchText>
+                    <Text size="small" textColor="gray" weight="semibold">
+                      {FOOTER_CONTENT.learnMore}
+                    </Text>
+                  </GlitchText>
                 }
                 lastSplit={
-                  <Text size="small" textColor="gray" weight="semibold">
-                    {FOOTER_CONTENT.learnMore}
-                  </Text>
+                  <GlitchText>
+                    <Text size="small" textColor="gray" weight="semibold">
+                      {FOOTER_CONTENT.learnMore}
+                    </Text>
+                  </GlitchText>
                 }
               />
             </Flex>
@@ -55,14 +61,18 @@ export default function Footer() {
               <Status />
               <SplitText
                 firstSplit={
-                  <Text size="small" textColor="gray" weight="semibold">
-                    {FOOTER_CONTENT.author}
-                  </Text>
+                  <GlitchText>
+                    <Text size="small" textColor="gray" weight="semibold">
+                      {FOOTER_CONTENT.author}
+                    </Text>
+                  </GlitchText>
                 }
                 lastSplit={
-                  <Text size="small" textColor="gray" weight="semibold">
-                    {FOOTER_CONTENT.author}
-                  </Text>
+                  <GlitchText>
+                    <Text size="small" textColor="gray" weight="semibold">
+                      {FOOTER_CONTENT.author}
+                    </Text>
+                  </GlitchText>
                 }
               />
             </Flex>
