@@ -137,18 +137,39 @@ export default function Projects() {
                   aria-hidden={activeIndex !== index}
                   tabIndex={activeIndex === index ? 0 : -1}
                 >
-                  <img
-                    src={project.image}
-                    alt={activeIndex === index ? project.title : ""}
-                    className="projects__slide-image"
-                    data-active={activeIndex === index}
-                    style={{ zIndex: activeIndex === index ? 2 : 1 }}
-                    loading="lazy"
-                    decoding="async"
-                    onError={(e) => {
-                      e.currentTarget.style.display = "none";
-                    }}
-                  />
+                  {project.imageMobile ? (
+                    <picture>
+                      <source
+                        media="(max-width: 989px)"
+                        srcSet={project.imageMobile}
+                      />
+                      <img
+                        src={project.image}
+                        alt={activeIndex === index ? project.title : ""}
+                        className="projects__slide-image"
+                        data-active={activeIndex === index}
+                        style={{ zIndex: activeIndex === index ? 2 : 1 }}
+                        loading="lazy"
+                        decoding="async"
+                        onError={(e) => {
+                          e.currentTarget.style.display = "none";
+                        }}
+                      />
+                    </picture>
+                  ) : (
+                    <img
+                      src={project.image}
+                      alt={activeIndex === index ? project.title : ""}
+                      className="projects__slide-image"
+                      data-active={activeIndex === index}
+                      style={{ zIndex: activeIndex === index ? 2 : 1 }}
+                      loading="lazy"
+                      decoding="async"
+                      onError={(e) => {
+                        e.currentTarget.style.display = "none";
+                      }}
+                    />
+                  )}
                 </a>
               ))}
             </figure>
