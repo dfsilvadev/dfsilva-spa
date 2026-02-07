@@ -1,13 +1,13 @@
 import type { Book } from "./types";
 
-import cleanCode from "../../assets/books/clean-code.png";
-import facilitatingSoftwareArchitecture from "../../assets/books/facilitating-software-architecture.png";
-import firstAndForemost from "../../assets/books/first-and-foremost.png";
-import fundamentalsOfSoftwareArchitecture from "../../assets/books/fundamentals-of-software-architecture.png";
-import learningTs from "../../assets/books/learning-ts.png";
-import patternJs from "../../assets/books/patterns-js.png";
-import refactor from "../../assets/books/refactor.png";
-import yourCareer from "../../assets/books/your-career.png";
+import book1 from "../../assets/images/books/book-1.png";
+import book2 from "../../assets/images/books/book-2.png";
+import book3 from "../../assets/images/books/book-3.png";
+import book4 from "../../assets/images/books/book-4.png";
+import book5 from "../../assets/images/books/book-5.png";
+import book6 from "../../assets/images/books/book-6.png";
+import book7 from "../../assets/images/books/book-7.png";
+import book8 from "../../assets/images/books/book-8.png";
 
 export const BOOKS: Book[] = [
   {
@@ -15,56 +15,56 @@ export const BOOKS: Book[] = [
     title: "Padrões Javascript",
     author: "Stoyan Stefanov",
     category: "Desenvolvimento Web",
-    image: patternJs,
+    image: book1,
   },
   {
     id: "clean-code",
     title: "Clean Code",
     author: "Robert C. Martin",
     category: "Desenvolvimento de Software",
-    image: cleanCode,
+    image: book2,
   },
   {
     id: "aprendendo-typescript",
     title: "Aprendendo Typescript",
     author: "Josh Goldberg",
     category: "Sistemas de Tipagem",
-    image: learningTs,
+    image: book3,
   },
   {
     id: "refatoracao",
     title: "Refatoração",
     author: "Martin Fowler",
     category: "Evolução de Software",
-    image: refactor,
+    image: book4,
   },
   {
     id: "fundamentos-arquitetura",
     title: "Fundamentos da arquitetura de software",
     author: "Mark Richards",
     category: "Design de Sistemas",
-    image: fundamentalsOfSoftwareArchitecture,
+    image: book5,
   },
   {
     id: "facilitando-arquitetura",
     title: "Facilitando a arquitetura de software",
     author: "Andrew Harmel-Law",
     category: "Design de Sistemas",
-    image: facilitatingSoftwareArchitecture,
+    image: book6,
   },
   {
     id: "primeiro-mais-importante",
     title: "Primeiro o mais importante",
     author: "Stephen R. Covey",
     category: "Eficácia Organizacional",
-    image: firstAndForemost,
+    image: book7,
   },
   {
     id: "seja-egoista-carreira",
     title: "Seja egoísta com sua carreira",
     author: "Luciano Santos",
     category: "Autogestão",
-    image: yourCareer,
+    image: book8,
   },
 ];
 

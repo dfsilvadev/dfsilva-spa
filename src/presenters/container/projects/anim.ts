@@ -28,11 +28,11 @@ export const projects: Project[] = [
     category: "Front-end",
   },
   {
-    title: "Ignews",
+    title: "JWT Auth Service",
     image: work3,
-    repositoryURL: "https://github.com/dfsilvadev/ignite-ignews",
-    technologies: ["Next.js", "TypeScript"],
-    category: "Front-end",
+    repositoryURL: "https://github.com/dfsilvadev/jwt-auth-service",
+    technologies: ["Node.js", "TypeScript", "JWT", "Express"],
+    category: "Back-end",
   },
 ];
 
