@@ -80,6 +80,12 @@
   }
 }
 
+.projects__figure picture {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
 .projects__slide-image {
   position: absolute;
   top: 0;
