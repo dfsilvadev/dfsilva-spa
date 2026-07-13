@@ -3,6 +3,8 @@ import { ArrowUpRight, X } from "phosphor-react";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 
+import Magnetic from "../magnetic";
+import SplitText from "../split-text";
 import Status from "../status";
 
 import { SOCIAL_URLS } from "@/lib/constants/social";
@@ -20,10 +22,10 @@ interface MenuProps {
 }
 
 const socialLinks = [
-  { label: "Instagram", href: SOCIAL_URLS.INSTAGRAM },
-  { label: "LinkedIn", href: SOCIAL_URLS.LINKEDIN },
-  { label: "GitHub", href: SOCIAL_URLS.GITHUB },
-  { label: "Twitter", href: SOCIAL_URLS.TWITTER },
+  { label: "ig", title: "Instagram", href: SOCIAL_URLS.INSTAGRAM },
+  { label: "lk", title: "LinkedIn", href: SOCIAL_URLS.LINKEDIN },
+  { label: "gh", title: "GitHub", href: SOCIAL_URLS.GITHUB },
+  { label: "tw", title: "Twitter", href: SOCIAL_URLS.TWITTER },
 ];
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
@@ -243,9 +245,14 @@ export default function Menu({ isOpen, onClose, burgerButtonRef }: MenuProps) {
                       className="menu__social-link"
                       target="_blank"
                       rel="noopener noreferrer"
-                      aria-label={`${link.label} ${t("a11y.opensNewWindow")}`}
+                      title={link.title}
+                      aria-label={`${link.title} ${t("a11y.opensNewWindow")}`}
                     >
-                      {link.label}
+                      <SplitText
+                        className="menu__social-link-label"
+                        firstSplit={link.label}
+                        lastSplit={link.label}
+                      />
                       <ArrowUpRight size={12} weight="bold" />
                     </motion.a>
                   ))}
@@ -258,13 +265,15 @@ export default function Menu({ isOpen, onClose, burgerButtonRef }: MenuProps) {
                 transition={{ delay: 0.3 }}
                 className="menu__footer"
               >
-                <a
-                  href="mailto:dfsilva.dxp@gmail.com?subject=Olá,%20Daniel!"
-                  className="menu__footer-email"
-                >
-                  dfsilva.dxp@gmail.com
-                  <ArrowUpRight size={16} weight="bold" />
-                </a>
+                <Magnetic>
+                  <a
+                    href="mailto:dfsilva.dxp@gmail.com?subject=Olá,%20Daniel!"
+                    className="menu__footer-email"
+                  >
+                    dfsilva.dxp@gmail.com
+                    <ArrowUpRight size={16} weight="bold" />
+                  </a>
+                </Magnetic>
               </motion.div>
             </div>
 

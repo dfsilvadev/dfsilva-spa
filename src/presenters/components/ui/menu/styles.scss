@@ -162,6 +162,19 @@
   }
 }
 
+.menu__social-link-label {
+  .split-text__overflow {
+    height: 1.8rem;
+  }
+
+  .split-text__item {
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    color: inherit;
+  }
+}
+
 .menu__footer {
   margin-top: 3.2rem;
   padding-top: 1.6rem;
