@@ -6,7 +6,7 @@ import { HERO_TITLES } from "../constants";
 
 /**
  * Hero title section component
- * Displays "Sênior", "Frontend", and "Developer" titles
+ * Displays "Sênior", "Software", and "Developer" titles
  */
 const HeroTitle = () => {
   return (
@@ -23,7 +23,7 @@ const HeroTitle = () => {
         <Flex>
           <GlitchText>
             <Heading as="h2" size="huge" textColor="white">
-              {HERO_TITLES.frontend}
+              {HERO_TITLES.software}
             </Heading>
           </GlitchText>
         </Flex>

@@ -18,7 +18,7 @@ export const GLITCH_ANIMATION_CONFIG = {
 
 export const HERO_TITLES = {
   senior: "Sênior",
-  frontend: "Frontend",
+  software: "Software",
   developer: "Developer",
 } as const;
 
